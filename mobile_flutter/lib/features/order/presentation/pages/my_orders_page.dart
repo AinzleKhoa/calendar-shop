@@ -1,15 +1,19 @@
-import 'package:flutter/material.dart';
+// my_orders_page.dart
+// This file keeps the route-compatible class name used by app_router.dart.
+// The implementation delegates to OrderHistoryPage.
 
-class MyOrdersPage extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'order_history_page.dart';
+
+/// MyOrdersPage is an alias kept for router compatibility.
+/// All logic lives in [OrderHistoryPage].
+class MyOrdersPage extends ConsumerWidget {
   const MyOrdersPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Đơn hàng của tôi')),
-      body: const Center(
-        child: Text('TODO: Gọi /api/orders/mine để xem danh sách đơn, chi tiết đơn, hủy đơn Pending.'),
-      ),
-    );
+  Widget build(BuildContext context, WidgetRef ref) {
+    return const OrderHistoryPage();
   }
 }
