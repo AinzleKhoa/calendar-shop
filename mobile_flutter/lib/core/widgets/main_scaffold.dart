@@ -30,18 +30,23 @@ class MainScaffold extends ConsumerWidget {
   void _onItemTapped(int index, BuildContext context) {
     switch (index) {
       case 0:
-        context.go('/products');
+        _goIfDifferent(context, '/products');
         break;
       case 1:
-        context.go('/favorites');
+        _goIfDifferent(context, '/favorites');
         break;
       case 2:
-        context.go('/cart');
+        _goIfDifferent(context, '/cart');
         break;
       case 3:
-        context.go('/orders');
+        _goIfDifferent(context, '/orders');
         break;
     }
+  }
+
+  void _goIfDifferent(BuildContext context, String location) {
+    if (currentPath == location) return;
+    context.go(location);
   }
 
   @override
@@ -71,7 +76,7 @@ class MainScaffold extends ConsumerWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () => context.push('/notifications'),
+            onPressed: () => _goIfDifferent(context, '/notifications'),
             icon: Badge(
               isLabelVisible: unreadNotifications > 0,
               label: Text(
@@ -87,7 +92,7 @@ class MainScaffold extends ConsumerWidget {
             tooltip: 'Thông báo',
           ),
           IconButton(
-            onPressed: () => context.push('/chat'),
+            onPressed: () => _goIfDifferent(context, '/chat'),
             icon: const Icon(
               Icons.smart_toy_outlined,
               color: AppColors.primary,
@@ -95,7 +100,7 @@ class MainScaffold extends ConsumerWidget {
             tooltip: 'Trợ lý cửa hàng',
           ),
           IconButton(
-            onPressed: () => context.push('/cart'),
+            onPressed: () => _goIfDifferent(context, '/cart'),
             icon: Badge(
               isLabelVisible: cartCount > 0,
               label: Text(
@@ -119,7 +124,7 @@ class MainScaffold extends ConsumerWidget {
               tooltip: 'Trang quản trị',
             ),
           IconButton(
-            onPressed: () => context.push('/profile'),
+            onPressed: () => _goIfDifferent(context, '/profile'),
             icon: const Icon(
               Icons.account_circle_outlined,
               color: AppColors.textPrimary,

@@ -493,7 +493,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage>
     try {
       await ref.read(reorderActionProvider.notifier).reorder(orderId);
       if (context.mounted) {
-        context.push('/cart');
+        context.go('/cart');
       }
     } catch (e) {
       if (context.mounted) {

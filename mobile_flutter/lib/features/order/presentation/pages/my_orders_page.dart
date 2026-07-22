@@ -290,7 +290,7 @@ class _MyOrdersPageState extends ConsumerState<MyOrdersPage> with SingleTickerPr
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(content: Text('Đã thêm sản phẩm vào giỏ hàng!')),
                                   );
-                                  context.push('/cart');
+                                  context.go('/cart');
                                 }
                               } catch (e) {
                                 if (context.mounted) {

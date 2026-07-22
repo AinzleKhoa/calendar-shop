@@ -27,7 +27,7 @@ class AdminHomePage extends ConsumerWidget {
             onPressed: () => context.go('/products'),
           ),
           IconButton(
-            onPressed: () => context.push('/profile'),
+            onPressed: () => context.go('/profile'),
             icon: const Icon(Icons.account_circle_outlined),
             tooltip: 'Hồ sơ',
           ),
@@ -170,7 +170,7 @@ class AdminHomePage extends ConsumerWidget {
           size: 14,
           color: AppColors.textMuted,
         ),
-        onTap: () => context.push(route),
+        onTap: () => context.go(route),
         ),
       ),
     );
