@@ -66,4 +66,5 @@ class ApiConstants {
   static const String notifications = '/notifications';
   static const String chatAsk = '/chat/ask';
   static const String addresses = '/addresses';
+  static const String uploads = '/uploads';
 }

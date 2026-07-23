@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/api_constants.dart';
+import '../../../../core/services/image_upload_service.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../providers/product_provider.dart';
 
@@ -442,41 +443,19 @@ class _ARPreviewPageState extends ConsumerState<ARPreviewPage> {
     });
   }
 
-  void _uploadCustomBackground() {
-    // Cho phép người dùng nhập link ảnh phòng của họ hoặc tự giả lập
-    final urlController = TextEditingController();
-    // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Nhập link ảnh phòng của bạn'),
-        content: TextField(
-          controller: urlController,
-          decoration: const InputDecoration(
-            hintText: 'Nhập địa chỉ ảnh HTTP hoặc HTTPS...',
-            border: OutlineInputBorder(),
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Hủy'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              if (urlController.text.trim().isNotEmpty) {
-                setState(() {
-                  _selectedBackgroundUrl = urlController.text.trim();
-                });
-              }
-              Navigator.pop(context);
-            },
-            style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary),
-            child: const Text('Áp dụng'),
-          ),
-        ],
-      ),
-    );
+  Future<void> _uploadCustomBackground() async {
+    try {
+      final uploadedUrl = await ref.read(imageUploadServiceProvider).pickAndUploadImage();
+      if (uploadedUrl == null) return;
+      setState(() {
+        _selectedBackgroundUrl = ApiConstants.resolveImageUrl(uploadedUrl);
+      });
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Không thể tải ảnh phòng: $e')),
+      );
+    }
   }
 
   void _takeSnapshot() {

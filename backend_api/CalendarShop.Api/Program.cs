@@ -106,6 +106,7 @@ try
     builder.Services.AddScoped<IChatAssistantService, ChatAssistantService>();
     builder.Services.AddHttpClient<ILocalLlmService, LocalLlmService>();
     builder.Services.AddScoped<IAddressService, AddressService>();
+    builder.Services.AddScoped<IImageStorageService, ImageStorageService>();
     builder.Services.AddProblemDetails();
     builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 

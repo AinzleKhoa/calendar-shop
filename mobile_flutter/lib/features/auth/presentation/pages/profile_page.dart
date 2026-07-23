@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/constants/api_constants.dart';
+import '../../../../core/services/image_upload_service.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../providers/auth_provider.dart';
 
@@ -20,6 +22,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   final _phoneController = TextEditingController();
   final _avatarUrlController = TextEditingController();
   bool _initialized = false;
+  bool _isUploadingAvatar = false;
 
   // Giải phóng tài nguyên khi widget bị hủy.
   @override
@@ -72,11 +75,32 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     );
   }
 
+  Future<void> _pickAvatarImage() async {
+    setState(() => _isUploadingAvatar = true);
+    try {
+      final uploadedUrl = await ref.read(imageUploadServiceProvider).pickAndUploadImage();
+      if (uploadedUrl == null) return;
+      setState(() {
+        _avatarUrlController.text = uploadedUrl;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Không thể tải ảnh avatar: $e')),
+      );
+    } finally {
+      if (mounted) {
+        setState(() => _isUploadingAvatar = false);
+      }
+    }
+  }
+
   // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(authNotifierProvider);
     _syncForm(state);
+    final avatarUrl = ApiConstants.resolveImageUrl(_avatarUrlController.text);
 
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FA),
@@ -149,10 +173,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                           CircleAvatar(
                             radius: 46,
                             backgroundColor: const Color(0xFF0056C6).withOpacity(0.1),
-                            backgroundImage: _avatarUrlController.text.trim().isNotEmpty
-                                ? NetworkImage(_avatarUrlController.text.trim())
-                                : null,
-                            child: _avatarUrlController.text.trim().isEmpty
+                            backgroundImage: avatarUrl.isNotEmpty ? NetworkImage(avatarUrl) : null,
+                            child: avatarUrl.isEmpty
                                 ? const Icon(Icons.person, size: 48, color: Color(0xFF0056C6))
                                 : null,
                           ),
@@ -290,13 +312,24 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         ),
                       ),
                       const SizedBox(height: 12),
-                      TextField(
-                        controller: _avatarUrlController,
-                        decoration: _inputDecoration(
-                          label: 'Link Avatar URL',
-                          prefixIcon: Icons.image_outlined,
+                      OutlinedButton.icon(
+                        onPressed: _isUploadingAvatar ? null : _pickAvatarImage,
+                        icon: _isUploadingAvatar
+                            ? const SizedBox(
+                                width: 18,
+                                height: 18,
+                                child: CircularProgressIndicator(strokeWidth: 2),
+                              )
+                            : const Icon(Icons.image_outlined),
+                        label: Text(_avatarUrlController.text.trim().isEmpty
+                            ? 'Chọn ảnh avatar từ máy'
+                            : 'Đổi ảnh avatar'),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: const Color(0xFF0056C6),
+                          side: const BorderSide(color: Color(0xFF0056C6)),
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                         ),
-                        onChanged: (_) => setState(() {}),
                       ),
                       const SizedBox(height: 16),
                       if (state.error != null)

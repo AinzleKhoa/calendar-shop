@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/constants/api_constants.dart';
+import '../../../../core/services/image_upload_service.dart';
 import '../../../category/presentation/providers/category_provider.dart';
 import '../../domain/entities/product.dart';
 import '../providers/product_provider.dart';
@@ -29,6 +31,7 @@ class _AdminProductFormPageState extends ConsumerState<AdminProductFormPage> {
   int? _selectedCategoryId;
   String _selectedCalendarType = 'Wall Calendar';
   String _selectedStatus = 'Active';
+  bool _isUploadingImage = false;
 
   final List<String> _calendarTypes = [
     'Wall Calendar',
@@ -45,6 +48,26 @@ class _AdminProductFormPageState extends ConsumerState<AdminProductFormPage> {
   ];
 
   bool get _isEditMode => widget.product != null;
+
+  Future<void> _pickProductImage() async {
+    setState(() => _isUploadingImage = true);
+    try {
+      final uploadedUrl = await ref.read(imageUploadServiceProvider).pickAndUploadImage();
+      if (uploadedUrl == null) return;
+      setState(() {
+        _imageUrlController.text = uploadedUrl;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Không thể tải ảnh sản phẩm: $e')),
+      );
+    } finally {
+      if (mounted) {
+        setState(() => _isUploadingImage = false);
+      }
+    }
+  }
 
   // Khởi tạo controller và state cục bộ của màn hình.
   @override
@@ -144,6 +167,7 @@ class _AdminProductFormPageState extends ConsumerState<AdminProductFormPage> {
   Widget build(BuildContext context) {
     final categoriesAsync = ref.watch(categoryListProvider);
     final actionState = ref.watch(adminProductActionNotifierProvider);
+    final previewImageUrl = ApiConstants.resolveImageUrl(_imageUrlController.text);
 
     return Scaffold(
       appBar: AppBar(
@@ -264,12 +288,53 @@ class _AdminProductFormPageState extends ConsumerState<AdminProductFormPage> {
                   const SizedBox(height: 12),
 
                   // Link ảnh
-                  TextFormField(
-                    controller: _imageUrlController,
-                    decoration: const InputDecoration(
-                      labelText: 'Địa chỉ ảnh URL (ImageUrl)',
-                      border: OutlineInputBorder(),
-                      helperText: 'Để trống nếu muốn sử dụng ảnh mặc định.',
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey.shade400),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        if (previewImageUrl.isNotEmpty) ...[
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.network(
+                              previewImageUrl,
+                              height: 160,
+                              fit: BoxFit.cover,
+                              errorBuilder: (_, __, ___) => Container(
+                                height: 160,
+                                color: Colors.grey.shade100,
+                                alignment: Alignment.center,
+                                child: const Icon(Icons.image_not_supported_outlined, size: 40),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                        ],
+                        OutlinedButton.icon(
+                          onPressed: _isUploadingImage ? null : _pickProductImage,
+                          icon: _isUploadingImage
+                              ? const SizedBox(
+                                  width: 18,
+                                  height: 18,
+                                  child: CircularProgressIndicator(strokeWidth: 2),
+                                )
+                              : const Icon(Icons.image_outlined),
+                          label: Text(previewImageUrl.isEmpty
+                              ? 'Chọn ảnh sản phẩm từ máy'
+                              : 'Đổi ảnh sản phẩm'),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          previewImageUrl.isEmpty
+                              ? 'Để trống nếu muốn sử dụng ảnh mặc định.'
+                              : 'Ảnh đã được tải lên và sẽ lưu cùng sản phẩm.',
+                          style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 12),
