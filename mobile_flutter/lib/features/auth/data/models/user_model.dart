@@ -5,6 +5,7 @@ part 'user_model.freezed.dart';
 part 'user_model.g.dart';
 
 @freezed
+// Lớp UserModel giữ trách nhiệm chính của file này.
 class UserModel with _$UserModel {
   const factory UserModel({
     required int userId,
@@ -16,11 +17,13 @@ class UserModel with _$UserModel {
     String? avatarUrl,
   }) = _UserModel;
 
+  // Parse JSON từ backend sang model Dart.
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
 }
 
 extension UserModelMapper on UserModel {
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   AppUser toEntity() => AppUser(
         userId: userId,
         fullName: fullName,

@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../providers/auth_provider.dart';
 
+// Lớp ConfirmEmailPage giữ trách nhiệm chính của file này.
 class ConfirmEmailPage extends ConsumerStatefulWidget {
   final String? initialToken;
   final String? initialEmail;
@@ -16,6 +17,7 @@ class ConfirmEmailPage extends ConsumerStatefulWidget {
   ConsumerState<ConfirmEmailPage> createState() => _ConfirmEmailPageState();
 }
 
+// Lớp _ConfirmEmailPageState giữ trách nhiệm chính của file này.
 class _ConfirmEmailPageState extends ConsumerState<ConfirmEmailPage> {
   final _otpController = TextEditingController();
   final _emailController = TextEditingController();
@@ -28,20 +30,27 @@ class _ConfirmEmailPageState extends ConsumerState<ConfirmEmailPage> {
   static const Color _textPrimary = Color(0xFF0F172A);
   static const Color _textSecondary = Color(0xFF64748B);
 
+  // Khởi tạo controller và state cục bộ của màn hình.
   @override
   void initState() {
+    // Khởi tạo controller và state cục bộ của màn hình.
     super.initState();
     _otpController.text = widget.initialToken ?? '';
     _emailController.text = widget.initialEmail ?? '';
   }
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _otpController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _emailController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(authNotifierProvider);

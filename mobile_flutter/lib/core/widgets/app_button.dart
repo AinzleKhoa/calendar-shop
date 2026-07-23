@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Lớp AppButton giữ trách nhiệm chính của file này.
 class AppButton extends StatelessWidget {
   final String text;
   final bool isLoading;
@@ -12,6 +13,7 @@ class AppButton extends StatelessWidget {
     this.onPressed,
   });
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return SizedBox(

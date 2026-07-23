@@ -4,11 +4,13 @@ import '../../../../core/theme/app_colors.dart';
 import '../../domain/entities/admin_dashboard_stats.dart';
 import 'dashboard_section_card.dart';
 
+// Lớp StatusBreakdownCard giữ trách nhiệm chính của file này.
 class StatusBreakdownCard extends StatelessWidget {
   final AdminDashboardStats stats;
 
   const StatusBreakdownCard({super.key, required this.stats});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final statusColor = <String, Color>{

@@ -3,11 +3,13 @@ import '../../domain/repositories/product_repository.dart';
 import '../datasources/product_remote_datasource.dart';
 import '../models/product_model.dart';
 
+// Lớp ProductRepositoryImpl giữ trách nhiệm chính của file này.
 class ProductRepositoryImpl implements ProductRepository {
   final ProductRemoteDataSource remoteDataSource;
 
   ProductRepositoryImpl(this.remoteDataSource);
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<List<Product>> getProducts({
     int? categoryId,
@@ -31,15 +33,19 @@ class ProductRepositoryImpl implements ProductRepository {
       top: top,
       skip: skip,
     );
+    // Chuyển model DTO sang entity domain trước khi đưa lên UI.
     return models.map((m) => m.toEntity()).toList();
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<Product> getProductById(int id) async {
     final model = await remoteDataSource.getProductById(id);
+    // Chuyển model DTO sang entity domain trước khi đưa lên UI.
     return model.toEntity();
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<Product> createProduct({
     required int categoryId,
@@ -61,9 +67,11 @@ class ProductRepositoryImpl implements ProductRepository {
       calendarType: calendarType,
       status: status,
     );
+    // Chuyển model DTO sang entity domain trước khi đưa lên UI.
     return model.toEntity();
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<void> updateProduct(
     int id, {
@@ -89,6 +97,7 @@ class ProductRepositoryImpl implements ProductRepository {
     );
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<void> deleteProduct(int id) {
     return remoteDataSource.deleteProduct(id);

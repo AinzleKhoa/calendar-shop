@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'cart_item.freezed.dart';
 
 @freezed
+// Lớp CartItemEntity giữ trách nhiệm chính của file này.
 class CartItemEntity with _$CartItemEntity {
   const factory CartItemEntity({
     required int cartItemId,

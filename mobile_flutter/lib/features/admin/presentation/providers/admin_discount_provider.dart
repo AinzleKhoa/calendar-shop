@@ -59,6 +59,7 @@ DeleteAdminDiscountUseCase deleteAdminDiscountUseCase(DeleteAdminDiscountUseCase
   return DeleteAdminDiscountUseCase(ref.watch(adminDiscountRepositoryProvider));
 }
 
+// Lớp AdminDiscountFilterState giữ trách nhiệm chính của file này.
 class AdminDiscountFilterState {
   final String? searchQuery;
   final int page;
@@ -99,6 +100,7 @@ class AdminDiscountFilterState {
   }
 }
 
+// Lớp AdminDiscountFilter giữ trách nhiệm chính của file này.
 @riverpod
 class AdminDiscountFilter extends _$AdminDiscountFilter {
   @override
@@ -155,6 +157,7 @@ Future<AdminDiscount> adminDiscountDetail(AdminDiscountDetailRef ref, int id) {
   return ref.watch(getAdminDiscountByIdUseCaseProvider)(id);
 }
 
+// Lớp AdminDiscountActionNotifier giữ trách nhiệm chính của file này.
 @riverpod
 class AdminDiscountActionNotifier extends _$AdminDiscountActionNotifier {
   @override
@@ -162,6 +165,7 @@ class AdminDiscountActionNotifier extends _$AdminDiscountActionNotifier {
     return false; // isLoading
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> createDiscount({
     required String name,
     required String discountType,
@@ -193,6 +197,7 @@ class AdminDiscountActionNotifier extends _$AdminDiscountActionNotifier {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> updateDiscount(
     int id, {
     required String name,
@@ -227,6 +232,7 @@ class AdminDiscountActionNotifier extends _$AdminDiscountActionNotifier {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> deleteDiscount(int id) async {
     state = true;
     try {
@@ -240,6 +246,7 @@ class AdminDiscountActionNotifier extends _$AdminDiscountActionNotifier {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> updateDiscountStatus(int id, String status) async {
     state = true;
     try {

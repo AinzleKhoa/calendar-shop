@@ -4,6 +4,7 @@ import '../providers/address_provider.dart';
 import '../../domain/entities/address.dart';
 import 'add_edit_address_dialog.dart';
 
+// Lớp AddressSelectionBottomSheet giữ trách nhiệm chính của file này.
 class AddressSelectionBottomSheet extends ConsumerWidget {
   final Address? currentSelectedAddress;
 
@@ -14,6 +15,7 @@ class AddressSelectionBottomSheet extends ConsumerWidget {
     return parts.where((p) => p != null && p.isNotEmpty).join(', ');
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final addressState = ref.watch(addressListProvider);
@@ -92,6 +94,7 @@ class AddressSelectionBottomSheet extends ConsumerWidget {
                         trailing: IconButton(
                           icon: const Icon(Icons.edit, size: 20),
                           onPressed: () {
+                            // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
                             showDialog(
                               context: context,
                               builder: (context) => AddEditAddressDialog(existingAddress: address),
@@ -114,6 +117,7 @@ class AddressSelectionBottomSheet extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(vertical: 16),
               ),
               onPressed: () {
+                // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
                 showDialog(
                   context: context,
                   builder: (context) => const AddEditAddressDialog(),

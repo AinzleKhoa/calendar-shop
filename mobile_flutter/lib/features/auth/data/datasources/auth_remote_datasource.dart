@@ -6,13 +6,16 @@ import '../models/message_result_model.dart';
 import '../models/register_result_model.dart';
 import '../models/user_model.dart';
 
+// Lớp AuthRemoteDataSource giữ trách nhiệm chính của file này.
 class AuthRemoteDataSource {
   final ApiClient apiClient;
 
   AuthRemoteDataSource(this.apiClient);
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<Map<String, bool>> checkAvailability({String? email, String? phone}) async {
     try {
+      // Gọi API GET để lấy dữ liệu từ backend.
       final response = await apiClient.dio.get(
         '/auth/check-availability',
         queryParameters: {
@@ -30,11 +33,13 @@ class AuthRemoteDataSource {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<AuthResultModel> login({
     required String login,
     required String password,
   }) async {
     try {
+      // Gọi API POST để tạo dữ liệu hoặc kích hoạt hành động backend.
       final response = await apiClient.dio.post(
         ApiConstants.login,
         data: {
@@ -42,6 +47,7 @@ class AuthRemoteDataSource {
           'password': password,
         },
       );
+      // Parse JSON từ backend sang model Dart.
       return AuthResultModel.fromJson(response.data);
     } catch (e) {
       throw apiClient.handleError(e);
@@ -55,6 +61,7 @@ class AuthRemoteDataSource {
     String? idToken,
   }) async {
     try {
+      // Gọi API POST để tạo dữ liệu hoặc kích hoạt hành động backend.
       final response = await apiClient.dio.post(
         ApiConstants.googleLogin,
         data: {
@@ -64,12 +71,14 @@ class AuthRemoteDataSource {
           'idToken': _emptyToNull(idToken),
         },
       );
+      // Parse JSON từ backend sang model Dart.
       return AuthResultModel.fromJson(response.data);
     } catch (e) {
       throw apiClient.handleError(e);
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<RegisterResultModel> register({
     required String fullName,
     String? email,
@@ -77,6 +86,7 @@ class AuthRemoteDataSource {
     required String password,
   }) async {
     try {
+      // Gọi API POST để tạo dữ liệu hoặc kích hoạt hành động backend.
       final response = await apiClient.dio.post(
         ApiConstants.register,
         data: {
@@ -86,14 +96,17 @@ class AuthRemoteDataSource {
           'password': password,
         },
       );
+      // Parse JSON từ backend sang model Dart.
       return RegisterResultModel.fromJson(response.data);
     } catch (e) {
       throw apiClient.handleError(e);
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> logout({String? refreshToken}) async {
     try {
+      // Gọi API POST để tạo dữ liệu hoặc kích hoạt hành động backend.
       await apiClient.dio.post(
         ApiConstants.logout,
         data: {
@@ -107,13 +120,16 @@ class AuthRemoteDataSource {
 
   Future<UserModel> me() async {
     try {
+      // Gọi API GET để lấy dữ liệu từ backend.
       final response = await apiClient.dio.get(ApiConstants.me);
+      // Parse JSON từ backend sang model Dart.
       return UserModel.fromJson(response.data);
     } catch (e) {
       throw apiClient.handleError(e);
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<UserModel> updateProfile({
     required String fullName,
     String? email,
@@ -123,6 +139,7 @@ class AuthRemoteDataSource {
     DateTime? dateOfBirth,
   }) async {
     try {
+      // Gọi API PUT để cập nhật dữ liệu trên backend.
       final response = await apiClient.dio.put(
         ApiConstants.profile,
         data: {
@@ -134,17 +151,20 @@ class AuthRemoteDataSource {
           'dateOfBirth': dateOfBirth?.toIso8601String(),
         },
       );
+      // Parse JSON từ backend sang model Dart.
       return UserModel.fromJson(response.data);
     } catch (e) {
       throw apiClient.handleError(e);
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> changePassword({
     required String oldPassword,
     required String newPassword,
   }) async {
     try {
+      // Gọi API PUT để cập nhật dữ liệu trên backend.
       await apiClient.dio.put(
         ApiConstants.changePassword,
         data: {
@@ -161,39 +181,46 @@ class AuthRemoteDataSource {
     required String login,
   }) async {
     try {
+      // Gọi API POST để tạo dữ liệu hoặc kích hoạt hành động backend.
       final response = await apiClient.dio.post(
         ApiConstants.forgotPassword,
         data: {
           'login': login,
         },
       );
+      // Parse JSON từ backend sang model Dart.
       return ForgotPasswordResultModel.fromJson(response.data);
     } catch (e) {
       throw apiClient.handleError(e);
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<MessageResultModel> verifyResetCode({
     required String resetCode,
   }) async {
     try {
+      // Gọi API POST để tạo dữ liệu hoặc kích hoạt hành động backend.
       final response = await apiClient.dio.post(
         ApiConstants.verifyResetCode,
         data: {
           'resetCode': resetCode,
         },
       );
+      // Parse JSON từ backend sang model Dart.
       return MessageResultModel.fromJson(response.data);
     } catch (e) {
       throw apiClient.handleError(e);
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> resetPassword({
     required String resetToken,
     required String newPassword,
   }) async {
     try {
+      // Gọi API POST để tạo dữ liệu hoặc kích hoạt hành động backend.
       await apiClient.dio.post(
         ApiConstants.resetPassword,
         data: {
@@ -206,11 +233,13 @@ class AuthRemoteDataSource {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<MessageResultModel> confirmEmail({
     required String email,
     required String otp,
   }) async {
     try {
+      // Gọi API POST để tạo dữ liệu hoặc kích hoạt hành động backend.
       final response = await apiClient.dio.post(
         ApiConstants.confirmEmail,
         data: {
@@ -218,6 +247,7 @@ class AuthRemoteDataSource {
           'otp': otp,
         },
       );
+      // Parse JSON từ backend sang model Dart.
       return MessageResultModel.fromJson(response.data);
     } catch (e) {
       throw apiClient.handleError(e);
@@ -228,12 +258,14 @@ class AuthRemoteDataSource {
     required String email,
   }) async {
     try {
+      // Gọi API POST để tạo dữ liệu hoặc kích hoạt hành động backend.
       final response = await apiClient.dio.post(
         ApiConstants.resendEmailConfirmation,
         data: {
           'email': email,
         },
       );
+      // Parse JSON từ backend sang model Dart.
       return MessageResultModel.fromJson(response.data);
     } catch (e) {
       throw apiClient.handleError(e);

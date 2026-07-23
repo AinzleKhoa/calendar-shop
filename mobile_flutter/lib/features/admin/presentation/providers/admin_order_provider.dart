@@ -41,6 +41,7 @@ UpdateAdminOrderStatusUseCase updateAdminOrderStatusUseCase(UpdateAdminOrderStat
   return UpdateAdminOrderStatusUseCase(ref.watch(adminOrderRepositoryProvider));
 }
 
+// Lớp AdminOrderSearchQuery giữ trách nhiệm chính của file này.
 @riverpod
 class AdminOrderSearchQuery extends _$AdminOrderSearchQuery {
   @override
@@ -51,6 +52,7 @@ class AdminOrderSearchQuery extends _$AdminOrderSearchQuery {
   }
 }
 
+// Lớp AdminOrderStatusFilter giữ trách nhiệm chính của file này.
 @riverpod
 class AdminOrderStatusFilter extends _$AdminOrderStatusFilter {
   @override
@@ -70,11 +72,13 @@ Future<List<AdminOrder>> adminOrders(AdminOrdersRef ref) {
   return getAdminOrdersUseCase(search: search, status: status);
 }
 
+// Lớp AdminOrderAction giữ trách nhiệm chính của file này.
 @riverpod
 class AdminOrderAction extends _$AdminOrderAction {
   @override
   bool build() => false; // isLoading
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> updateStatus(int id, String status, {String? note}) async {
     state = true;
     try {

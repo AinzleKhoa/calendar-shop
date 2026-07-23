@@ -5,6 +5,7 @@ part 'cart_item_model.freezed.dart';
 part 'cart_item_model.g.dart';
 
 @freezed
+// Lớp CartItemModel giữ trách nhiệm chính của file này.
 class CartItemModel with _$CartItemModel {
   const factory CartItemModel({
     required int cartItemId,
@@ -20,11 +21,13 @@ class CartItemModel with _$CartItemModel {
     @Default(true) bool isAvailable,
   }) = _CartItemModel;
 
+  // Parse JSON từ backend sang model Dart.
   factory CartItemModel.fromJson(Map<String, dynamic> json) =>
       _$CartItemModelFromJson(json);
 }
 
 extension CartItemModelMapper on CartItemModel {
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   CartItemEntity toEntity() => CartItemEntity(
         cartItemId: cartItemId,
         productId: productId,

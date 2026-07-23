@@ -6,6 +6,7 @@ import '../providers/admin_user_provider.dart';
 import '../providers/admin_stats_provider.dart';
 import '../widgets/admin_page_layout.dart';
 import '../widgets/admin_customer_stats_section.dart';
+// Lớp AdminUserListPage giữ trách nhiệm chính của file này.
 class AdminUserListPage extends ConsumerStatefulWidget {
   const AdminUserListPage({super.key});
 
@@ -13,14 +14,18 @@ class AdminUserListPage extends ConsumerStatefulWidget {
   ConsumerState<AdminUserListPage> createState() => _AdminUserListPageState();
 }
 
+// Lớp _AdminUserListPageState giữ trách nhiệm chính của file này.
 class _AdminUserListPageState extends ConsumerState<AdminUserListPage> {
   final _searchController = TextEditingController();
   String? _role;
   String? _status;
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _searchController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
@@ -85,6 +90,7 @@ class _AdminUserListPageState extends ConsumerState<AdminUserListPage> {
     );
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final usersAsync = ref.watch(adminUsersProvider(_filter));

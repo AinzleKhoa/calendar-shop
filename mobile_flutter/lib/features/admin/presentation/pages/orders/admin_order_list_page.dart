@@ -8,9 +8,11 @@ import '../../providers/admin_order_provider.dart';
 import '../../widgets/admin_page_layout.dart';
 import '../../widgets/admin_order_stats_section.dart';
 
+// Lớp AdminOrderListPage giữ trách nhiệm chính của file này.
 class AdminOrderListPage extends ConsumerWidget {
   const AdminOrderListPage({super.key});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ordersAsync = ref.watch(adminOrdersProvider);

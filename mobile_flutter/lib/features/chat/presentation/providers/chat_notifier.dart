@@ -6,6 +6,7 @@ import 'chat_state.dart';
 const _chatGreeting =
     'Xin chào! Tôi có thể giúp bạn tìm sản phẩm, giá, tồn kho và coupon đang áp dụng.';
 
+// Lớp ChatNotifier giữ trách nhiệm chính của file này.
 class ChatNotifier extends StateNotifier<ChatState> {
   final Ref ref;
 
@@ -22,6 +23,7 @@ class ChatNotifier extends StateNotifier<ChatState> {
           ),
         );
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> sendMessage(String message) async {
     final trimmed = message.trim();
     if (trimmed.isEmpty || state.isLoading) return;

@@ -19,39 +19,51 @@ import 'admin_dashboard_provider.dart';
 final adminCustomerStatsProvider = FutureProvider.autoDispose<AdminCustomerStats>((ref) async {
   final apiClient = ref.watch(apiClientProvider);
   final days = ref.watch(dashboardDaysFilterProvider);
+  // Gọi API GET để lấy dữ liệu từ backend.
   final response = await apiClient.dio.get('${ApiConstants.users}/stats?days=$days');
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   return AdminCustomerStatsModel.fromJson(response.data).toEntity();
 });
 
 final adminProductStatsProvider = FutureProvider.autoDispose<AdminProductStats>((ref) async {
   final apiClient = ref.watch(apiClientProvider);
   final days = ref.watch(dashboardDaysFilterProvider);
+  // Gọi API GET để lấy dữ liệu từ backend.
   final response = await apiClient.dio.get('${ApiConstants.products}/stats?days=$days');
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   return AdminProductStatsModel.fromJson(response.data).toEntity();
 });
 
 final adminCategoryStatsProvider = FutureProvider.autoDispose<AdminCategoryStats>((ref) async {
   final apiClient = ref.watch(apiClientProvider);
+  // Gọi API GET để lấy dữ liệu từ backend.
   final response = await apiClient.dio.get('${ApiConstants.categories}/stats');
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   return AdminCategoryStatsModel.fromJson(response.data).toEntity();
 });
 
 final adminDiscountStatsProvider = FutureProvider.autoDispose<AdminDiscountStats>((ref) async {
   final apiClient = ref.watch(apiClientProvider);
+  // Gọi API GET để lấy dữ liệu từ backend.
   final response = await apiClient.dio.get('${ApiConstants.discounts}/stats');
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   return AdminDiscountStatsModel.fromJson(response.data).toEntity();
 });
 
 final adminOrderStatsProvider = FutureProvider.autoDispose<AdminOrderStats>((ref) async {
   final apiClient = ref.watch(apiClientProvider);
   final days = ref.watch(dashboardDaysFilterProvider);
+  // Gọi API GET để lấy dữ liệu từ backend.
   final response = await apiClient.dio.get('${ApiConstants.orders}/admin/stats?days=$days');
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   return AdminOrderStatsModel.fromJson(response.data).toEntity();
 });
 
 final adminCouponStatsProvider = FutureProvider.autoDispose<AdminCouponStats>((ref) async {
   final apiClient = ref.watch(apiClientProvider);
   final days = ref.watch(dashboardDaysFilterProvider);
+  // Gọi API GET để lấy dữ liệu từ backend.
   final response = await apiClient.dio.get('${ApiConstants.coupons}/stats?days=$days');
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   return AdminCouponStatsModel.fromJson(response.data).toEntity();
 });

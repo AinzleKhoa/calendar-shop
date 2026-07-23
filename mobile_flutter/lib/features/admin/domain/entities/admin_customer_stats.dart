@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'admin_customer_stats.freezed.dart';
 
 @freezed
+// Lớp AdminCustomerStats giữ trách nhiệm chính của file này.
 class AdminCustomerStats with _$AdminCustomerStats {
   const factory AdminCustomerStats({
     @Default(0) int totalCustomers,
@@ -17,6 +18,7 @@ class AdminCustomerStats with _$AdminCustomerStats {
 }
 
 @freezed
+// Lớp CustomerRankDistribution giữ trách nhiệm chính của file này.
 class CustomerRankDistribution with _$CustomerRankDistribution {
   const factory CustomerRankDistribution({
     @Default('') String rank,
@@ -26,6 +28,7 @@ class CustomerRankDistribution with _$CustomerRankDistribution {
 }
 
 @freezed
+// Lớp TopCustomer giữ trách nhiệm chính của file này.
 class TopCustomer with _$TopCustomer {
   const factory TopCustomer({
     @Default(0) int userId,

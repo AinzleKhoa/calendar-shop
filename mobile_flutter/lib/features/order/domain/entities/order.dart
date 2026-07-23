@@ -5,6 +5,7 @@ import 'order_item.dart';
 part 'order.freezed.dart';
 
 @freezed
+// Lớp OrderEntity giữ trách nhiệm chính của file này.
 class OrderEntity with _$OrderEntity {
   const factory OrderEntity({
     required int orderId,

@@ -10,10 +10,12 @@ import '../../../admin/presentation/widgets/admin_page_layout.dart';
 import '../../../admin/presentation/widgets/admin_product_stats_section.dart';
 import '../../../admin/presentation/providers/admin_stats_provider.dart';
 
+// Lớp AdminProductListPage giữ trách nhiệm chính của file này.
 class AdminProductListPage extends ConsumerWidget {
   const AdminProductListPage({super.key});
 
   void _handleDelete(BuildContext context, WidgetRef ref, int id) {
+    // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -46,6 +48,7 @@ class AdminProductListPage extends ConsumerWidget {
     );
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final productsAsync = ref.watch(adminProductListProvider);

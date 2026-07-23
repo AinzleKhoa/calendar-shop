@@ -6,6 +6,7 @@ part 'order_model.freezed.dart';
 part 'order_model.g.dart';
 
 @freezed
+// Lớp OrderItemModel giữ trách nhiệm chính của file này.
 class OrderItemModel with _$OrderItemModel {
   const factory OrderItemModel({
     required int orderItemId,
@@ -17,11 +18,13 @@ class OrderItemModel with _$OrderItemModel {
     required double totalPrice,
   }) = _OrderItemModel;
 
+  // Parse JSON từ backend sang model Dart.
   factory OrderItemModel.fromJson(Map<String, dynamic> json) =>
       _$OrderItemModelFromJson(json);
 }
 
 @freezed
+// Lớp OrderModel giữ trách nhiệm chính của file này.
 class OrderModel with _$OrderModel {
   const factory OrderModel({
     required int orderId,
@@ -40,11 +43,13 @@ class OrderModel with _$OrderModel {
     @Default([]) List<OrderItemModel> items,
   }) = _OrderModel;
 
+  // Parse JSON từ backend sang model Dart.
   factory OrderModel.fromJson(Map<String, dynamic> json) =>
       _$OrderModelFromJson(json);
 }
 
 extension OrderItemModelMapper on OrderItemModel {
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   OrderItemEntity toEntity() => OrderItemEntity(
         orderItemId: orderItemId,
         productId: productId,
@@ -57,6 +62,7 @@ extension OrderItemModelMapper on OrderItemModel {
 }
 
 extension OrderModelMapper on OrderModel {
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   OrderEntity toEntity() => OrderEntity(
         orderId: orderId,
         userId: userId,
@@ -71,6 +77,7 @@ extension OrderModelMapper on OrderModel {
         status: status,
         note: note,
         createdAt: createdAt,
+        // Chuyển model DTO sang entity domain trước khi đưa lên UI.
         items: items.map((item) => item.toEntity()).toList(),
       );
 }

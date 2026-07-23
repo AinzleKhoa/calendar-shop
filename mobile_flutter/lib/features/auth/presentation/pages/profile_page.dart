@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../providers/auth_provider.dart';
 
+// Lớp ProfilePage giữ trách nhiệm chính của file này.
 class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({super.key});
 
@@ -12,6 +13,7 @@ class ProfilePage extends ConsumerStatefulWidget {
   ConsumerState<ProfilePage> createState() => _ProfilePageState();
 }
 
+// Lớp _ProfilePageState giữ trách nhiệm chính của file này.
 class _ProfilePageState extends ConsumerState<ProfilePage> {
   final _fullNameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -19,12 +21,18 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   final _avatarUrlController = TextEditingController();
   bool _initialized = false;
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _fullNameController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _emailController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _phoneController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _avatarUrlController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
@@ -64,6 +72,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     );
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(authNotifierProvider);

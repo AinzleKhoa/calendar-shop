@@ -4,6 +4,7 @@ import '../../domain/repositories/admin_discount_repository.dart';
 import '../datasources/admin_discount_remote_datasource.dart';
 import '../models/admin_discount_model.dart';
 
+// Lớp AdminDiscountRepositoryImpl giữ trách nhiệm chính của file này.
 class AdminDiscountRepositoryImpl implements AdminDiscountRepository {
   final AdminDiscountRemoteDataSource remoteDataSource;
   final ApiClient apiClient;
@@ -13,6 +14,7 @@ class AdminDiscountRepositoryImpl implements AdminDiscountRepository {
     required this.apiClient,
   });
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<({List<AdminDiscount> items, int totalCount})> getDiscounts({
     String? searchQuery,
@@ -33,6 +35,7 @@ class AdminDiscountRepositoryImpl implements AdminDiscountRepository {
         filterEndDate: filterEndDate,
         sortByDiscountValue: sortByDiscountValue,
       );
+      // Chuyển model DTO sang entity domain trước khi đưa lên UI.
       final items = result.items.map((e) => e.toEntity()).toList();
       return (items: items, totalCount: result.totalCount);
     } catch (e) {
@@ -40,16 +43,19 @@ class AdminDiscountRepositoryImpl implements AdminDiscountRepository {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<AdminDiscount> getDiscountById(int id) async {
     try {
       final model = await remoteDataSource.getDiscountById(id);
+      // Chuyển model DTO sang entity domain trước khi đưa lên UI.
       return model.toEntity();
     } catch (e) {
       throw apiClient.handleError(e);
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<AdminDiscount> createDiscount({
     required String name,
@@ -74,12 +80,14 @@ class AdminDiscountRepositoryImpl implements AdminDiscountRepository {
       };
 
       final model = await remoteDataSource.createDiscount(data);
+      // Chuyển model DTO sang entity domain trước khi đưa lên UI.
       return model.toEntity();
     } catch (e) {
       throw apiClient.handleError(e);
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<void> updateDiscount(
     int id, {
@@ -109,6 +117,7 @@ class AdminDiscountRepositoryImpl implements AdminDiscountRepository {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<void> deleteDiscount(int id) async {
     try {
@@ -118,6 +127,7 @@ class AdminDiscountRepositoryImpl implements AdminDiscountRepository {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<void> updateDiscountStatus(int id, String status) async {
     try {

@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'app_user.freezed.dart';
 
 @freezed
+// Lớp AppUser giữ trách nhiệm chính của file này.
 class AppUser with _$AppUser {
   const factory AppUser({
     required int userId,

@@ -9,6 +9,7 @@ import '../providers/admin_stats_provider.dart';
 import '../widgets/admin_page_layout.dart';
 import '../widgets/admin_discount_stats_section.dart';
 
+// Lớp AdminDiscountListPage giữ trách nhiệm chính của file này.
 class AdminDiscountListPage extends ConsumerStatefulWidget {
   const AdminDiscountListPage({super.key});
 
@@ -16,14 +17,18 @@ class AdminDiscountListPage extends ConsumerStatefulWidget {
   ConsumerState<AdminDiscountListPage> createState() => _AdminDiscountListPageState();
 }
 
+// Lớp _AdminDiscountListPageState giữ trách nhiệm chính của file này.
 class _AdminDiscountListPageState extends ConsumerState<AdminDiscountListPage> {
   final _searchController = TextEditingController();
   Timer? _debounce;
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _searchController.dispose();
     _debounce?.cancel();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
@@ -36,6 +41,7 @@ class _AdminDiscountListPageState extends ConsumerState<AdminDiscountListPage> {
     
     final dateFormat = DateFormat('dd/MM/yyyy');
 
+    // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -169,6 +175,7 @@ class _AdminDiscountListPageState extends ConsumerState<AdminDiscountListPage> {
     );
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final filter = ref.watch(adminDiscountFilterProvider);
@@ -400,6 +407,7 @@ class _AdminDiscountListPageState extends ConsumerState<AdminDiscountListPage> {
                                           IconButton(
                                             icon: const Icon(Icons.delete, color: Colors.redAccent),
                                             onPressed: () {
+                                              // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
                                               showDialog(
                                                 context: context,
                                                 builder: (ctx) => AlertDialog(

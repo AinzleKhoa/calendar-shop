@@ -1,6 +1,7 @@
 import '../entities/admin_coupon.dart';
 import '../repositories/admin_coupon_repository.dart';
 
+// Lớp CreateAdminCouponUseCase giữ trách nhiệm chính của file này.
 class CreateAdminCouponUseCase {
   final AdminCouponRepository repository;
 

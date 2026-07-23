@@ -5,9 +5,11 @@ import '../../../../core/theme/app_colors.dart';
 import '../../domain/entities/admin_coupon_stats.dart';
 import '../providers/admin_stats_provider.dart';
 
+// Lớp AdminCouponStatsSection giữ trách nhiệm chính của file này.
 class AdminCouponStatsSection extends ConsumerWidget {
   const AdminCouponStatsSection({super.key});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final statsAsync = ref.watch(adminCouponStatsProvider);
@@ -57,6 +59,7 @@ class AdminCouponStatsSection extends ConsumerWidget {
   }
 }
 
+// Lớp _StatCard giữ trách nhiệm chính của file này.
 class _StatCard extends StatelessWidget {
   final String title;
   final String value;
@@ -74,6 +77,7 @@ class _StatCard extends StatelessWidget {
     this.subtitleColor,
   });
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Container(

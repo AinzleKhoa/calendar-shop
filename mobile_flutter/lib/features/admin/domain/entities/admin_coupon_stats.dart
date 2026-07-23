@@ -1,3 +1,4 @@
+// Lớp AdminCouponStats giữ trách nhiệm chính của file này.
 class AdminCouponStats {
   final int totalCoupons;
   final double totalCouponsGrowth;

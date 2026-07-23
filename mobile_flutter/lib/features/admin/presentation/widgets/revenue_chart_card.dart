@@ -6,11 +6,13 @@ import '../../domain/entities/admin_dashboard_stats.dart';
 import 'admin_dashboard_formatters.dart';
 import 'dashboard_section_card.dart';
 
+// Lớp DailyRevenueChartCard giữ trách nhiệm chính của file này.
 class DailyRevenueChartCard extends StatelessWidget {
   final List<RevenueByDay> data;
 
   const DailyRevenueChartCard({super.key, required this.data});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     if (data.isEmpty) {
@@ -91,6 +93,7 @@ class DailyRevenueChartCard extends StatelessWidget {
   }
 }
 
+// Lớp MonthlyRevenueChartCard giữ trách nhiệm chính của file này.
 class MonthlyRevenueChartCard extends StatefulWidget {
   final List<RevenueByMonth> data;
 
@@ -100,9 +103,11 @@ class MonthlyRevenueChartCard extends StatefulWidget {
   State<MonthlyRevenueChartCard> createState() => _MonthlyRevenueChartCardState();
 }
 
+// Lớp _MonthlyRevenueChartCardState giữ trách nhiệm chính của file này.
 class _MonthlyRevenueChartCardState extends State<MonthlyRevenueChartCard> {
   int _monthsFilter = 6;
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final data = widget.data;
@@ -248,6 +253,7 @@ class _MonthlyRevenueChartCardState extends State<MonthlyRevenueChartCard> {
   }
 }
 
+// Lớp _LineChartPainter giữ trách nhiệm chính của file này.
 class _LineChartPainter extends CustomPainter {
   final List<double> data;
   final double maxVal;
@@ -339,12 +345,14 @@ class _LineChartPainter extends CustomPainter {
   }
 }
 
+// Lớp _EmptyChartCard giữ trách nhiệm chính của file này.
 class _EmptyChartCard extends StatelessWidget {
   final String title;
   final String message;
 
   const _EmptyChartCard({required this.title, required this.message});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return DashboardSectionCard(

@@ -11,6 +11,7 @@ import '../../../cart/presentation/providers/cart_provider.dart';
 import '../../../category/presentation/providers/category_provider.dart';
 import '../providers/product_provider.dart';
 
+// Lớp ProductListPage giữ trách nhiệm chính của file này.
 class ProductListPage extends ConsumerStatefulWidget {
   const ProductListPage({super.key});
 
@@ -18,11 +19,14 @@ class ProductListPage extends ConsumerStatefulWidget {
   ConsumerState<ProductListPage> createState() => _ProductListPageState();
 }
 
+// Lớp _ProductListPageState giữ trách nhiệm chính của file này.
 class _ProductListPageState extends ConsumerState<ProductListPage> {
   final _searchController = TextEditingController();
 
+  // Khởi tạo controller và state cục bộ của màn hình.
   @override
   void initState() {
+    // Khởi tạo controller và state cục bộ của màn hình.
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final currentSearch = ref.read(productFilterProvider).search;
@@ -32,13 +36,17 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
     });
   }
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _searchController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
   void _showFilterBottomSheet(BuildContext context) {
+    // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -49,6 +57,7 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
     );
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final productsAsync = ref.watch(productListProvider);
@@ -209,6 +218,7 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
   }
 }
 
+// Lớp _FilterBottomSheet giữ trách nhiệm chính của file này.
 class _FilterBottomSheet extends ConsumerStatefulWidget {
   const _FilterBottomSheet();
 
@@ -216,14 +226,17 @@ class _FilterBottomSheet extends ConsumerStatefulWidget {
   ConsumerState<_FilterBottomSheet> createState() => _FilterBottomSheetState();
 }
 
+// Lớp _FilterBottomSheetState giữ trách nhiệm chính của file này.
 class _FilterBottomSheetState extends ConsumerState<_FilterBottomSheet> {
   final _minPriceController = TextEditingController();
   final _maxPriceController = TextEditingController();
   String? _selectedCalendarType;
   String? _selectedSortBy;
 
+  // Khởi tạo controller và state cục bộ của màn hình.
   @override
   void initState() {
+    // Khởi tạo controller và state cục bộ của màn hình.
     super.initState();
     final filter = ref.read(productFilterProvider);
     if (filter.minPrice != null) _minPriceController.text = filter.minPrice.toString();
@@ -232,13 +245,18 @@ class _FilterBottomSheetState extends ConsumerState<_FilterBottomSheet> {
     _selectedSortBy = filter.sort;
   }
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _minPriceController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _maxPriceController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -6,6 +6,7 @@ import '../../../../core/constants/api_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../providers/product_provider.dart';
 
+// Lớp ARPreviewPage giữ trách nhiệm chính của file này.
 class ARPreviewPage extends ConsumerStatefulWidget {
   final int productId;
 
@@ -15,6 +16,7 @@ class ARPreviewPage extends ConsumerStatefulWidget {
   ConsumerState<ARPreviewPage> createState() => _ARPreviewPageState();
 }
 
+// Lớp _ARPreviewPageState giữ trách nhiệm chính của file này.
 class _ARPreviewPageState extends ConsumerState<ARPreviewPage> {
   // Trạng thái ảnh nền
   String _selectedBackgroundUrl = _backgroundTemplates[0]['url']!;
@@ -45,6 +47,7 @@ class _ARPreviewPageState extends ConsumerState<ARPreviewPage> {
 
   bool _showGuide = true;
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final productAsync = ref.watch(productDetailProvider(widget.productId));
@@ -442,6 +445,7 @@ class _ARPreviewPageState extends ConsumerState<ARPreviewPage> {
   void _uploadCustomBackground() {
     // Cho phép người dùng nhập link ảnh phòng của họ hoặc tự giả lập
     final urlController = TextEditingController();
+    // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
     showDialog(
       context: context,
       builder: (context) => AlertDialog(

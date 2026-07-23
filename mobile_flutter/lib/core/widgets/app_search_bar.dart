@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 
+// Lớp AppSearchBar giữ trách nhiệm chính của file này.
 class AppSearchBar extends StatelessWidget {
   final String hintText;
   final TextEditingController? controller;
@@ -15,6 +16,7 @@ class AppSearchBar extends StatelessWidget {
     this.onFilterTap,
   });
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Row(

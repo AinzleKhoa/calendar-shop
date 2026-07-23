@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../providers/auth_provider.dart';
 
+// Lớp ResetPasswordPage giữ trách nhiệm chính của file này.
 class ResetPasswordPage extends ConsumerStatefulWidget {
   final String? initialToken;
 
@@ -14,6 +15,7 @@ class ResetPasswordPage extends ConsumerStatefulWidget {
   ConsumerState<ResetPasswordPage> createState() => _ResetPasswordPageState();
 }
 
+// Lớp _ResetPasswordPageState giữ trách nhiệm chính của file này.
 class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
   final _tokenController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -22,8 +24,10 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
+  // Khởi tạo controller và state cục bộ của màn hình.
   @override
   void initState() {
+    // Khởi tạo controller và state cục bộ của màn hình.
     super.initState();
     _tokenController.text = widget.initialToken ?? '';
   }
@@ -36,11 +40,16 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
     }
   }
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _tokenController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _passwordController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _confirmPasswordController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
@@ -73,6 +82,7 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
     );
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(authNotifierProvider);

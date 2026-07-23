@@ -3,23 +3,29 @@ import '../../domain/repositories/admin_coupon_repository.dart';
 import '../datasources/admin_coupon_remote_datasource.dart';
 import '../models/admin_coupon_model.dart';
 
+// Lớp AdminCouponRepositoryImpl giữ trách nhiệm chính của file này.
 class AdminCouponRepositoryImpl implements AdminCouponRepository {
   final AdminCouponRemoteDataSource remoteDataSource;
 
   AdminCouponRepositoryImpl(this.remoteDataSource);
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<List<AdminCoupon>> getCoupons() async {
     final models = await remoteDataSource.getCoupons();
+    // Chuyển model DTO sang entity domain trước khi đưa lên UI.
     return models.map((model) => model.toEntity()).toList();
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<AdminCoupon> getCouponById(int id) async {
     final model = await remoteDataSource.getCouponById(id);
+    // Chuyển model DTO sang entity domain trước khi đưa lên UI.
     return model.toEntity();
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<AdminCoupon> createCoupon({
     required String code,
@@ -43,9 +49,11 @@ class AdminCouponRepositoryImpl implements AdminCouponRepository {
       usageLimit: usageLimit,
       status: status,
     );
+    // Chuyển model DTO sang entity domain trước khi đưa lên UI.
     return model.toEntity();
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<void> updateCoupon(
     int id, {
@@ -73,6 +81,7 @@ class AdminCouponRepositoryImpl implements AdminCouponRepository {
     );
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<void> updateCouponStatus(int id, String status) {
     return remoteDataSource.updateCouponStatus(id, status);

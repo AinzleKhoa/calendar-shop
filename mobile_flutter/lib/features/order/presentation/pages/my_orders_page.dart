@@ -12,6 +12,7 @@ import '../../../review/presentation/widgets/write_review_dialog.dart';
 
 final myOrdersProvider = FutureProvider.autoDispose<List<dynamic>>((ref) async {
   final apiClient = ref.watch(apiClientProvider);
+  // Gọi API GET để lấy dữ liệu từ backend.
   final response = await apiClient.dio.get('/orders/mine', queryParameters: {'\$orderby': 'CreatedAt desc'});
   
   if (response.data is Map && (response.data as Map).containsKey('value')) {
@@ -22,6 +23,7 @@ final myOrdersProvider = FutureProvider.autoDispose<List<dynamic>>((ref) async {
   return [];
 });
 
+// Lớp MyOrdersPage giữ trách nhiệm chính của file này.
 class MyOrdersPage extends ConsumerStatefulWidget {
   const MyOrdersPage({super.key});
 
@@ -29,19 +31,25 @@ class MyOrdersPage extends ConsumerStatefulWidget {
   ConsumerState<MyOrdersPage> createState() => _MyOrdersPageState();
 }
 
+// Lớp _MyOrdersPageState giữ trách nhiệm chính của file này.
 class _MyOrdersPageState extends ConsumerState<MyOrdersPage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final List<String> _tabs = ['Tất cả', 'Chờ xác nhận', 'Đã xác nhận', 'Đang giao', 'Đã giao', 'Đã hủy'];
 
+  // Khởi tạo controller và state cục bộ của màn hình.
   @override
   void initState() {
+    // Khởi tạo controller và state cục bộ của màn hình.
     super.initState();
     _tabController = TabController(length: _tabs.length, vsync: this);
   }
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _tabController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
@@ -62,6 +70,7 @@ class _MyOrdersPageState extends ConsumerState<MyOrdersPage> with SingleTickerPr
     }
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final ordersAsync = ref.watch(myOrdersProvider);
@@ -199,6 +208,7 @@ class _MyOrdersPageState extends ConsumerState<MyOrdersPage> with SingleTickerPr
                                 TextButton(
                                   onPressed: () {
                                     if (item['review'] != null) {
+                                      // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
                                       showDialog(
                                         context: context,
                                         builder: (ctx) => AlertDialog(
@@ -230,6 +240,7 @@ class _MyOrdersPageState extends ConsumerState<MyOrdersPage> with SingleTickerPr
                                                 Navigator.pop(ctx);
                                                 try {
                                                   final apiClient = ref.read(apiClientProvider);
+                                                  // Gọi API DELETE để xóa dữ liệu trên backend.
                                                   await apiClient.dio.delete('/reviews/${item['review']['reviewId']}');
                                                   ref.invalidate(myOrdersProvider);
                                                 } catch (e) {
@@ -244,6 +255,7 @@ class _MyOrdersPageState extends ConsumerState<MyOrdersPage> with SingleTickerPr
                                         ),
                                       );
                                     } else {
+                                      // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
                                       showDialog(
                                         context: context,
                                         builder: (ctx) => WriteReviewDialog(
@@ -285,6 +297,7 @@ class _MyOrdersPageState extends ConsumerState<MyOrdersPage> with SingleTickerPr
                             onPressed: () async {
                               final apiClient = ref.read(apiClientProvider);
                               try {
+                                // Gọi API POST để tạo dữ liệu hoặc kích hoạt hành động backend.
                                 await apiClient.dio.post('/orders/${order['orderId']}/reorder');
                                 ref.invalidate(cartProvider);
                                 if (context.mounted) {

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../providers/auth_provider.dart';
 
+// Lớp LoginPage giữ trách nhiệm chính của file này.
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
@@ -11,19 +12,25 @@ class LoginPage extends ConsumerStatefulWidget {
   ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
+// Lớp _LoginPageState giữ trách nhiệm chính của file này.
 class _LoginPageState extends ConsumerState<LoginPage> {
   final _loginController = TextEditingController(text: 'customer@gmail.com');
   final _passwordController = TextEditingController(text: '123456');
   bool _obscurePassword = true;
   bool _rememberMe = false;
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _loginController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _passwordController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(authNotifierProvider);
@@ -442,6 +449,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   }
 
   void _handleGoogleSignIn() {
+    // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
     showDialog(
       context: context,
       builder: (ctx) => Dialog(
@@ -720,6 +728,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final customEmailController = TextEditingController();
     final customNameController = TextEditingController();
 
+    // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
     showDialog(
       context: context,
       builder: (ctx) => Dialog(

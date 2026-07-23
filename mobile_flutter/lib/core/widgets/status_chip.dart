@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 
+// Lớp StatusChip giữ trách nhiệm chính của file này.
 class StatusChip extends StatelessWidget {
   final String status;
 
   const StatusChip({super.key, required this.status});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final config = _getStyle(status);
@@ -85,6 +87,7 @@ class StatusChip extends StatelessWidget {
   }
 }
 
+// Lớp _ChipConfig giữ trách nhiệm chính của file này.
 class _ChipConfig {
   final String label;
   final Color textColor;

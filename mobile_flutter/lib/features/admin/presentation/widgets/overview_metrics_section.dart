@@ -7,11 +7,13 @@ import '../../domain/entities/admin_dashboard_stats.dart';
 import '../providers/admin_dashboard_provider.dart';
 import 'admin_dashboard_formatters.dart';
 
+// Lớp OverviewMetricsSection giữ trách nhiệm chính của file này.
 class OverviewMetricsSection extends ConsumerWidget {
   final AdminDashboardStats stats;
 
   const OverviewMetricsSection({super.key, required this.stats});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final days = ref.watch(dashboardDaysFilterProvider);
@@ -81,6 +83,7 @@ class OverviewMetricsSection extends ConsumerWidget {
   }
 }
 
+// Lớp _StatCard giữ trách nhiệm chính của file này.
 class _StatCard extends StatelessWidget {
   final IconData icon;
   final Color iconColor;
@@ -102,6 +105,7 @@ class _StatCard extends StatelessWidget {
     required this.onTap,
   });
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Container(

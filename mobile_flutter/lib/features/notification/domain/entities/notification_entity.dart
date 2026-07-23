@@ -1,3 +1,4 @@
+// Lớp NotificationEntity giữ trách nhiệm chính của file này.
 class NotificationEntity {
   final int notificationId;
   final int userId;

@@ -22,6 +22,7 @@ final authRepositoryProvider = Provider<AuthRepository>((ref) {
 final loginUseCaseProvider = Provider<LoginUseCase>((ref) => LoginUseCase(ref.watch(authRepositoryProvider)));
 final registerUseCaseProvider = Provider<RegisterUseCase>((ref) => RegisterUseCase(ref.watch(authRepositoryProvider)));
 
+// Lớp AuthState giữ trách nhiệm chính của file này.
 class AuthState {
   final bool isLoading;
   final AppUser? user;
@@ -55,11 +56,13 @@ class AuthState {
   }
 }
 
+// Lớp AuthNotifier giữ trách nhiệm chính của file này.
 class AuthNotifier extends StateNotifier<AuthState> {
   final Ref ref;
 
   AuthNotifier(this.ref) : super(const AuthState());
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> login(String login, String password) async {
     state = state.copyWith(isLoading: true, error: null, message: null);
     try {
@@ -70,6 +73,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> loginWithGoogle({
     required String email,
     String? fullName,
@@ -90,6 +94,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> register(String fullName, String email, String phone, String password) async {
     state = state.copyWith(isLoading: true, error: null, message: null);
     try {
@@ -100,6 +105,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> loadMe() async {
     state = state.copyWith(isLoading: true, error: null, message: null);
     try {
@@ -110,6 +116,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> updateProfile({
     required String fullName,
     String? email,
@@ -136,6 +143,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> changePassword(String oldPassword, String newPassword) async {
     state = state.copyWith(isLoading: true, error: null, message: null);
     try {
@@ -164,6 +172,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> verifyResetCode(String resetCode) async {
     state = state.copyWith(isLoading: true, error: null, message: null);
     try {
@@ -176,6 +185,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> resetPassword(String resetToken, String newPassword) async {
     state = state.copyWith(isLoading: true, error: null, message: null);
     try {
@@ -188,6 +198,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> confirmEmail(String email, String otp) async {
     state = state.copyWith(isLoading: true, error: null, message: null);
     try {
@@ -212,6 +223,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> logout() async {
     await ref.read(authRepositoryProvider).logout();
     state = const AuthState();

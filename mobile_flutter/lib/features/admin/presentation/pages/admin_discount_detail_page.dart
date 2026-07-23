@@ -8,11 +8,13 @@ import '../../../../../core/utils/currency_formatter.dart';
 import '../../../product/presentation/providers/product_provider.dart';
 import '../../../category/presentation/providers/category_provider.dart';
 
+// Lớp AdminDiscountDetailPage giữ trách nhiệm chính của file này.
 class AdminDiscountDetailPage extends ConsumerWidget {
   final AdminDiscount discount;
 
   const AdminDiscountDetailPage({super.key, required this.discount});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isPercent = discount.discountType == 'Percent';

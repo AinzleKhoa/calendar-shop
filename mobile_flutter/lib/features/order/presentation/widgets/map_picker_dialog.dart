@@ -5,6 +5,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import '../../../../core/theme/app_colors.dart';
 
+// Lớp MapAddressResult giữ trách nhiệm chính của file này.
 class MapAddressResult {
   final String fullAddress;
   final String province;
@@ -21,6 +22,7 @@ class MapAddressResult {
   });
 }
 
+// Lớp MapPickerDialog giữ trách nhiệm chính của file này.
 class MapPickerDialog extends StatefulWidget {
   const MapPickerDialog({super.key});
 
@@ -28,6 +30,7 @@ class MapPickerDialog extends StatefulWidget {
   State<MapPickerDialog> createState() => _MapPickerDialogState();
 }
 
+// Lớp _MapPickerDialogState giữ trách nhiệm chính của file này.
 class _MapPickerDialogState extends State<MapPickerDialog> {
   final MapController _mapController = MapController();
   final TextEditingController _searchController = TextEditingController();
@@ -41,17 +44,22 @@ class _MapPickerDialogState extends State<MapPickerDialog> {
   bool _isSearching = false;
   Timer? _debounceTimer;
 
+  // Khởi tạo controller và state cục bộ của màn hình.
   @override
   void initState() {
+    // Khởi tạo controller và state cục bộ của màn hình.
     super.initState();
     // Lấy địa chỉ của vị trí mặc định lúc khởi tạo
     _fetchAddress(_initialCenter.latitude, _initialCenter.longitude);
   }
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
     _debounceTimer?.cancel();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _searchController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
@@ -189,6 +197,7 @@ class _MapPickerDialogState extends State<MapPickerDialog> {
     });
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Dialog(

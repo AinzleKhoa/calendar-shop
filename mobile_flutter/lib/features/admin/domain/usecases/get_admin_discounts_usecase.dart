@@ -1,6 +1,7 @@
 import '../entities/admin_discount.dart';
 import '../repositories/admin_discount_repository.dart';
 
+// Lớp GetAdminDiscountsUseCase giữ trách nhiệm chính của file này.
 class GetAdminDiscountsUseCase {
   final AdminDiscountRepository repository;
 

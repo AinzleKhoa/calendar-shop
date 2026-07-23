@@ -6,6 +6,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../order/presentation/widgets/map_picker_dialog.dart';
 
+// Lớp AddEditAddressDialog giữ trách nhiệm chính của file này.
 class AddEditAddressDialog extends ConsumerStatefulWidget {
   final Address? existingAddress;
 
@@ -15,6 +16,7 @@ class AddEditAddressDialog extends ConsumerStatefulWidget {
   ConsumerState<AddEditAddressDialog> createState() => _AddEditAddressDialogState();
 }
 
+// Lớp _AddEditAddressDialogState giữ trách nhiệm chính của file này.
 class _AddEditAddressDialogState extends ConsumerState<AddEditAddressDialog> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _nameController;
@@ -25,8 +27,10 @@ class _AddEditAddressDialogState extends ConsumerState<AddEditAddressDialog> {
   late TextEditingController _addressLineController;
   bool _isDefault = false;
 
+  // Khởi tạo controller và state cục bộ của màn hình.
   @override
   void initState() {
+    // Khởi tạo controller và state cục bộ của màn hình.
     super.initState();
     final user = ref.read(authNotifierProvider).user;
     _nameController = TextEditingController(text: widget.existingAddress?.receiverName ?? user?.fullName ?? '');
@@ -38,14 +42,22 @@ class _AddEditAddressDialogState extends ConsumerState<AddEditAddressDialog> {
     _isDefault = widget.existingAddress?.isDefault ?? false;
   }
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _nameController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _phoneController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _provinceController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _districtController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _wardController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _addressLineController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
@@ -87,6 +99,7 @@ class _AddEditAddressDialogState extends ConsumerState<AddEditAddressDialog> {
     }
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

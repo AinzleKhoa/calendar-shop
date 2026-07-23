@@ -1,5 +1,6 @@
 import '../repositories/product_repository.dart';
 
+// Lớp DeleteProductUseCase giữ trách nhiệm chính của file này.
 class DeleteProductUseCase {
   final ProductRepository repository;
 

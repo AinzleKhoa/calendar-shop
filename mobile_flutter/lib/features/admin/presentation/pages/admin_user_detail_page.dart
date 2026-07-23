@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../providers/admin_user_provider.dart';
 
+// Lớp AdminUserDetailPage giữ trách nhiệm chính của file này.
 class AdminUserDetailPage extends ConsumerWidget {
   final int userId;
 
@@ -61,6 +62,7 @@ class AdminUserDetailPage extends ConsumerWidget {
     );
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userAsync = ref.watch(adminUserDetailProvider(userId));
@@ -299,6 +301,7 @@ class AdminUserDetailPage extends ConsumerWidget {
   }
 }
 
+// Lớp _SectionContainer giữ trách nhiệm chính của file này.
 class _SectionContainer extends StatelessWidget {
   final String title;
   final IconData icon;
@@ -306,6 +309,7 @@ class _SectionContainer extends StatelessWidget {
 
   const _SectionContainer({required this.title, required this.icon, required this.children});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -342,6 +346,7 @@ class _SectionContainer extends StatelessWidget {
   }
 }
 
+// Lớp _InfoItem giữ trách nhiệm chính của file này.
 class _InfoItem extends StatelessWidget {
   final String label;
   final String value;
@@ -350,6 +355,7 @@ class _InfoItem extends StatelessWidget {
 
   const _InfoItem({required this.label, required this.value, required this.icon, this.valueColor});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Padding(

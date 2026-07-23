@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'product_rating_summary.freezed.dart';
 
 @freezed
+// Lớp ProductRatingSummary giữ trách nhiệm chính của file này.
 class ProductRatingSummary with _$ProductRatingSummary {
   const factory ProductRatingSummary({
     required int productId,

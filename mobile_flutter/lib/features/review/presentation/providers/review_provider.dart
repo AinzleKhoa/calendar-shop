@@ -38,6 +38,7 @@ final productRatingSummaryProvider = FutureProvider.family.autoDispose<ProductRa
   return ref.watch(getProductRatingSummaryUseCaseProvider)(productId);
 });
 
+// Lớp ReviewActionState giữ trách nhiệm chính của file này.
 class ReviewActionState {
   final bool isLoading;
   final String? error;
@@ -48,11 +49,13 @@ class ReviewActionState {
   });
 }
 
+// Lớp ReviewActionNotifier giữ trách nhiệm chính của file này.
 class ReviewActionNotifier extends StateNotifier<ReviewActionState> {
   final Ref ref;
 
   ReviewActionNotifier(this.ref) : super(const ReviewActionState());
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> createReview(int orderItemId, int rating, String? comment, int productId) async {
     state = const ReviewActionState(isLoading: true);
     try {

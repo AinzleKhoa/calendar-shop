@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'admin_product_stats.freezed.dart';
 
 @freezed
+// Lớp AdminProductStats giữ trách nhiệm chính của file này.
 class AdminProductStats with _$AdminProductStats {
   const factory AdminProductStats({
     @Default(0) int totalProducts,
@@ -18,6 +19,7 @@ class AdminProductStats with _$AdminProductStats {
 }
 
 @freezed
+// Lớp ProductBestSelling giữ trách nhiệm chính của file này.
 class ProductBestSelling with _$ProductBestSelling {
   const factory ProductBestSelling({
     @Default(0) int productId,
@@ -27,6 +29,7 @@ class ProductBestSelling with _$ProductBestSelling {
 }
 
 @freezed
+// Lớp CategoryStockDistribution giữ trách nhiệm chính của file này.
 class CategoryStockDistribution with _$CategoryStockDistribution {
   const factory CategoryStockDistribution({
     @Default('') String categoryName,
@@ -36,6 +39,7 @@ class CategoryStockDistribution with _$CategoryStockDistribution {
 }
 
 @freezed
+// Lớp ProductLowStock giữ trách nhiệm chính của file này.
 class ProductLowStock with _$ProductLowStock {
   const factory ProductLowStock({
     @Default(0) int productId,

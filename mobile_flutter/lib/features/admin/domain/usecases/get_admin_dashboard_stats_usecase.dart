@@ -1,6 +1,7 @@
 import '../entities/admin_dashboard_stats.dart';
 import '../repositories/admin_dashboard_repository.dart';
 
+// Lớp GetAdminDashboardStatsUseCase giữ trách nhiệm chính của file này.
 class GetAdminDashboardStatsUseCase {
   final AdminDashboardRepository repository;
 

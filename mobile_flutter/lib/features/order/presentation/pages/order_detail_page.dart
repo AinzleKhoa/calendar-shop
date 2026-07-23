@@ -12,6 +12,7 @@ import '../providers/order_provider.dart';
 import '../../../cart/presentation/providers/cart_provider.dart';
 import 'my_orders_page.dart' as my_orders;
 
+// Lớp OrderDetailPage giữ trách nhiệm chính của file này.
 class OrderDetailPage extends ConsumerStatefulWidget {
   final int orderId;
 
@@ -21,17 +22,22 @@ class OrderDetailPage extends ConsumerStatefulWidget {
   ConsumerState<OrderDetailPage> createState() => _OrderDetailPageState();
 }
 
+// Lớp _OrderDetailPageState giữ trách nhiệm chính của file này.
 class _OrderDetailPageState extends ConsumerState<OrderDetailPage>
     with WidgetsBindingObserver {
+  // Khởi tạo controller và state cục bộ của màn hình.
   @override
   void initState() {
+    // Khởi tạo controller và state cục bộ của màn hình.
     super.initState();
     WidgetsBinding.instance.addObserver(this);
   }
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
@@ -42,6 +48,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage>
     }
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final orderState = ref.watch(orderDetailProvider(widget.orderId));
@@ -518,6 +525,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage>
   void _showCancelDialog(BuildContext context, WidgetRef ref, int orderId) {
     final reasonController = TextEditingController();
 
+    // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
@@ -571,6 +579,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage>
               Navigator.pop(dialogContext);
               try {
                 final apiClient = ref.read(apiClientProvider);
+                // Gọi API PUT để cập nhật dữ liệu trên backend.
                 await apiClient.dio.put('/orders/$orderId/cancel',
                     data: {'reason': reasonController.text.trim()});
                 ref.invalidate(my_orders.myOrdersProvider);
@@ -630,10 +639,12 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage>
 
 // ─── Shared Widgets ──────────────────────────────────────────────────────────
 
+// Lớp _SectionCard giữ trách nhiệm chính của file này.
 class _SectionCard extends StatelessWidget {
   final Widget child;
   const _SectionCard({required this.child});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -653,11 +664,13 @@ class _SectionCard extends StatelessWidget {
   }
 }
 
+// Lớp _SectionTitle giữ trách nhiệm chính của file này.
 class _SectionTitle extends StatelessWidget {
   final IconData icon;
   final String label;
   const _SectionTitle({required this.icon, required this.label});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -677,6 +690,7 @@ class _SectionTitle extends StatelessWidget {
   }
 }
 
+// Lớp _InfoRow giữ trách nhiệm chính của file này.
 class _InfoRow extends StatelessWidget {
   final IconData icon;
   final String label;
@@ -684,6 +698,7 @@ class _InfoRow extends StatelessWidget {
   const _InfoRow(
       {required this.icon, required this.label, required this.value});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -709,12 +724,14 @@ class _InfoRow extends StatelessWidget {
   }
 }
 
+// Lớp _PriceRow giữ trách nhiệm chính của file này.
 class _PriceRow extends StatelessWidget {
   final String label;
   final double value;
   final Color? valueColor;
   const _PriceRow({required this.label, required this.value, this.valueColor});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Row(

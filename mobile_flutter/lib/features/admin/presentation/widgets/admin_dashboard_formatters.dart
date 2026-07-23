@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 
+// Lớp AdminDashboardFormatters giữ trách nhiệm chính của file này.
 class AdminDashboardFormatters {
   AdminDashboardFormatters._();
 

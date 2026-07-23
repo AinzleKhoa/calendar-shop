@@ -6,6 +6,7 @@ import '../errors/app_exception.dart';
 import '../storage/token_storage.dart';
 import 'api_logging_interceptor.dart';
 
+// Lớp ApiClient giữ trách nhiệm chính của file này.
 class ApiClient {
   final Dio dio;
   final TokenStorage tokenStorage;

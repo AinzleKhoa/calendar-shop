@@ -5,6 +5,7 @@ part 'admin_order_model.freezed.dart';
 part 'admin_order_model.g.dart';
 
 @freezed
+// Lớp AdminOrderItemModel giữ trách nhiệm chính của file này.
 class AdminOrderItemModel with _$AdminOrderItemModel {
   const factory AdminOrderItemModel({
     required int orderItemId,
@@ -16,11 +17,13 @@ class AdminOrderItemModel with _$AdminOrderItemModel {
     required double totalPrice,
   }) = _AdminOrderItemModel;
 
+  // Parse JSON từ backend sang model Dart.
   factory AdminOrderItemModel.fromJson(Map<String, dynamic> json) =>
       _$AdminOrderItemModelFromJson(json);
 }
 
 @freezed
+// Lớp AdminOrderModel giữ trách nhiệm chính của file này.
 class AdminOrderModel with _$AdminOrderModel {
   const factory AdminOrderModel({
     required int orderId,
@@ -39,11 +42,13 @@ class AdminOrderModel with _$AdminOrderModel {
     @Default([]) List<AdminOrderItemModel> items,
   }) = _AdminOrderModel;
 
+  // Parse JSON từ backend sang model Dart.
   factory AdminOrderModel.fromJson(Map<String, dynamic> json) =>
       _$AdminOrderModelFromJson(json);
 }
 
 extension AdminOrderItemModelMapper on AdminOrderItemModel {
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   AdminOrderItem toEntity() => AdminOrderItem(
         orderItemId: orderItemId,
         productId: productId,
@@ -56,6 +61,7 @@ extension AdminOrderItemModelMapper on AdminOrderItemModel {
 }
 
 extension AdminOrderModelMapper on AdminOrderModel {
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   AdminOrder toEntity() => AdminOrder(
         orderId: orderId,
         userId: userId,
@@ -70,6 +76,7 @@ extension AdminOrderModelMapper on AdminOrderModel {
         status: status,
         note: note,
         createdAt: createdAt,
+        // Chuyển model DTO sang entity domain trước khi đưa lên UI.
         items: items.map((e) => e.toEntity()).toList(),
       );
 }

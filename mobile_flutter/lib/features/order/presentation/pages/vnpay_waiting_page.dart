@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../providers/order_provider.dart';
 
+// Lớp VNPayWaitingPage giữ trách nhiệm chính của file này.
 class VNPayWaitingPage extends ConsumerStatefulWidget {
   final int orderId;
   const VNPayWaitingPage({super.key, required this.orderId});
@@ -12,19 +13,24 @@ class VNPayWaitingPage extends ConsumerStatefulWidget {
   ConsumerState<VNPayWaitingPage> createState() => _VNPayWaitingPageState();
 }
 
+// Lớp _VNPayWaitingPageState giữ trách nhiệm chính của file này.
 class _VNPayWaitingPageState extends ConsumerState<VNPayWaitingPage> {
   Timer? _timer;
   bool _isCancelling = false;
   
+  // Khởi tạo controller và state cục bộ của màn hình.
   @override
   void initState() {
+    // Khởi tạo controller và state cục bộ của màn hình.
     super.initState();
     _startPolling();
   }
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
     _timer?.cancel();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
@@ -76,6 +82,7 @@ class _VNPayWaitingPageState extends ConsumerState<VNPayWaitingPage> {
     }
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Scaffold(

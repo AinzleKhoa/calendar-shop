@@ -19,6 +19,7 @@ NotificationRepository notificationRepository(NotificationRepositoryRef ref) {
 }
 
 /// Notifier quản lý danh sách thông báo của người dùng.
+// Lớp NotificationNotifier giữ trách nhiệm chính của file này.
 @riverpod
 class NotificationNotifier extends _$NotificationNotifier {
   @override

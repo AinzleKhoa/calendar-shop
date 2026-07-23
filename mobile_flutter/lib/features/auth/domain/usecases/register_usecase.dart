@@ -1,5 +1,6 @@
 import '../repositories/auth_repository.dart';
 
+// Lớp RegisterUseCase giữ trách nhiệm chính của file này.
 class RegisterUseCase {
   final AuthRepository repository;
 

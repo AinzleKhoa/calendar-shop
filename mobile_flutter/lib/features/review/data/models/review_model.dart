@@ -5,6 +5,7 @@ part 'review_model.freezed.dart';
 part 'review_model.g.dart';
 
 @freezed
+// Lớp ReviewModel giữ trách nhiệm chính của file này.
 class ReviewModel with _$ReviewModel {
   const factory ReviewModel({
     required int reviewId,
@@ -21,11 +22,13 @@ class ReviewModel with _$ReviewModel {
     DateTime? updatedAt,
   }) = _ReviewModel;
 
+  // Parse JSON từ backend sang model Dart.
   factory ReviewModel.fromJson(Map<String, dynamic> json) =>
       _$ReviewModelFromJson(json);
 }
 
 extension ReviewModelMapper on ReviewModel {
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   Review toEntity() => Review(
         reviewId: reviewId,
         userId: userId,

@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'admin_discount.freezed.dart';
 
 @freezed
+// Lớp AdminDiscount giữ trách nhiệm chính của file này.
 class AdminDiscount with _$AdminDiscount {
   const factory AdminDiscount({
     required int discountId,

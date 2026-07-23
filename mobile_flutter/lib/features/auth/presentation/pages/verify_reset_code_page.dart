@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../providers/auth_provider.dart';
 
+// Lớp VerifyResetCodePage giữ trách nhiệm chính của file này.
 class VerifyResetCodePage extends ConsumerStatefulWidget {
   final String? login;
 
@@ -15,15 +16,19 @@ class VerifyResetCodePage extends ConsumerStatefulWidget {
   ConsumerState<VerifyResetCodePage> createState() => _VerifyResetCodePageState();
 }
 
+// Lớp _VerifyResetCodePageState giữ trách nhiệm chính của file này.
 class _VerifyResetCodePageState extends ConsumerState<VerifyResetCodePage> {
   final _codeController = TextEditingController();
 
   static const Color _primaryColor = Color(0xFF0056C6);
   static const Color _backgroundColor = Colors.white;
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _codeController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
@@ -66,6 +71,7 @@ class _VerifyResetCodePageState extends ConsumerState<VerifyResetCodePage> {
     }
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(authNotifierProvider);

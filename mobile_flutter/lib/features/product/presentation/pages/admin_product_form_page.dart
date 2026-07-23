@@ -6,6 +6,7 @@ import '../../../category/presentation/providers/category_provider.dart';
 import '../../domain/entities/product.dart';
 import '../providers/product_provider.dart';
 
+// Lớp AdminProductFormPage giữ trách nhiệm chính của file này.
 class AdminProductFormPage extends ConsumerStatefulWidget {
   final Product? product;
 
@@ -15,6 +16,7 @@ class AdminProductFormPage extends ConsumerStatefulWidget {
   ConsumerState<AdminProductFormPage> createState() => _AdminProductFormPageState();
 }
 
+// Lớp _AdminProductFormPageState giữ trách nhiệm chính của file này.
 class _AdminProductFormPageState extends ConsumerState<AdminProductFormPage> {
   final _formKey = GlobalKey<FormState>();
 
@@ -44,8 +46,10 @@ class _AdminProductFormPageState extends ConsumerState<AdminProductFormPage> {
 
   bool get _isEditMode => widget.product != null;
 
+  // Khởi tạo controller và state cục bộ của màn hình.
   @override
   void initState() {
+    // Khởi tạo controller và state cục bộ của màn hình.
     super.initState();
     if (_isEditMode) {
       final p = widget.product!;
@@ -64,13 +68,20 @@ class _AdminProductFormPageState extends ConsumerState<AdminProductFormPage> {
     }
   }
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _nameController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _descController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _priceController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _stockController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _imageUrlController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
@@ -128,6 +139,7 @@ class _AdminProductFormPageState extends ConsumerState<AdminProductFormPage> {
     }
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final categoriesAsync = ref.watch(categoryListProvider);

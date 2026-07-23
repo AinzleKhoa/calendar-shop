@@ -57,6 +57,7 @@ GetVNPayUrlUseCase getVNPayUrlUseCase(GetVNPayUrlUseCaseRef ref) {
 }
 
 /// Notifier quản lý danh sách đơn hàng bất đồng bộ
+// Lớp MyOrders giữ trách nhiệm chính của file này.
 @riverpod
 class MyOrders extends _$MyOrders {
   @override
@@ -77,6 +78,7 @@ class MyOrders extends _$MyOrders {
 }
 
 /// Notifier quản lý chi tiết đơn hàng bất đồng bộ
+// Lớp OrderDetail giữ trách nhiệm chính của file này.
 @riverpod
 class OrderDetail extends _$OrderDetail {
   @override
@@ -90,11 +92,13 @@ ReorderUseCase reorderUseCase(ReorderUseCaseRef ref) {
   return ReorderUseCase(ref.watch(orderRepositoryProvider));
 }
 
+// Lớp ReorderAction giữ trách nhiệm chính của file này.
 @riverpod
 class ReorderAction extends _$ReorderAction {
   @override
   void build() {}
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> reorder(int orderId) async {
     await ref.read(reorderUseCaseProvider)(orderId);
     await ref.refresh(cartProvider.future);

@@ -12,6 +12,7 @@ class OrderRemoteDataSource {
   /// Lấy danh sách đơn hàng của người dùng hiện tại (API dạng OData)
   Future<List<OrderModel>> getMyOrders() async {
     try {
+      // Gọi API GET để lấy dữ liệu từ backend.
       final response = await apiClient.dio.get('${ApiConstants.orders}/mine');
 
       // Vì OData bọc danh sách trong thuộc tính "value", ta cần bóc tách dữ liệu
@@ -24,6 +25,7 @@ class OrderRemoteDataSource {
         dataList = [];
       }
 
+      // Parse JSON từ backend sang model Dart.
       return dataList.map((e) => OrderModel.fromJson(e)).toList();
     } catch (e) {
       throw apiClient.handleError(e);
@@ -33,7 +35,9 @@ class OrderRemoteDataSource {
   /// Lấy chi tiết một đơn hàng theo ID
   Future<OrderModel> getOrderById(int id) async {
     try {
+      // Gọi API GET để lấy dữ liệu từ backend.
       final response = await apiClient.dio.get('${ApiConstants.orders}/$id');
+      // Parse JSON từ backend sang model Dart.
       return OrderModel.fromJson(response.data);
     } catch (e) {
       throw apiClient.handleError(e);
@@ -43,6 +47,7 @@ class OrderRemoteDataSource {
   /// Hủy đơn hàng đang ở trạng thái Pending
   Future<void> cancelOrder(int id, String? reason) async {
     try {
+      // Gọi API PUT để cập nhật dữ liệu trên backend.
       await apiClient.dio.put('${ApiConstants.orders}/$id/cancel', data: {
         'reason': reason,
       });
@@ -54,7 +59,9 @@ class OrderRemoteDataSource {
   /// Tạo một đơn hàng mới
   Future<OrderModel> createOrder(CreateOrderRequest request) async {
     try {
+      // Gọi API POST để tạo dữ liệu hoặc kích hoạt hành động backend.
       final response = await apiClient.dio.post(ApiConstants.orders, data: request.toJson());
+      // Parse JSON từ backend sang model Dart.
       return OrderModel.fromJson(response.data);
     } catch (e) {
       throw apiClient.handleError(e);
@@ -64,6 +71,7 @@ class OrderRemoteDataSource {
   /// Lấy VNPay Payment URL
   Future<String> getVNPayUrl(int orderId) async {
     try {
+      // Gọi API GET để lấy dữ liệu từ backend.
       final response = await apiClient.dio.get('/payment/vnpay/$orderId');
       return response.data['url'] as String;
     } catch (e) {
@@ -74,6 +82,7 @@ class OrderRemoteDataSource {
   /// Mua lại đơn hàng
   Future<void> reorder(int orderId) async {
     try {
+      // Gọi API POST để tạo dữ liệu hoặc kích hoạt hành động backend.
       await apiClient.dio.post('${ApiConstants.orders}/$orderId/reorder');
     } catch (e) {
       throw apiClient.handleError(e);

@@ -5,6 +5,7 @@ part 'product_model.freezed.dart';
 part 'product_model.g.dart';
 
 @freezed
+// Lớp ProductModel giữ trách nhiệm chính của file này.
 class ProductModel with _$ProductModel {
   const factory ProductModel({
     required int productId,
@@ -21,11 +22,13 @@ class ProductModel with _$ProductModel {
     required DateTime createdAt,
   }) = _ProductModel;
 
+  // Parse JSON từ backend sang model Dart.
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
       _$ProductModelFromJson(json);
 }
 
 extension ProductModelMapper on ProductModel {
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   Product toEntity() => Product(
         productId: productId,
         categoryId: categoryId,

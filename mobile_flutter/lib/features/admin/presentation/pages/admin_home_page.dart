@@ -15,8 +15,10 @@ import '../widgets/low_stock_products_card.dart';
 import '../widgets/admin_dashboard_header.dart';
 import '../widgets/admin_page_layout.dart';
 
+// Lớp AdminHomePage giữ trách nhiệm chính của file này.
 class AdminHomePage extends ConsumerWidget {
   const AdminHomePage({super.key});
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final statsAsync = ref.watch(adminDashboardStatsProvider);

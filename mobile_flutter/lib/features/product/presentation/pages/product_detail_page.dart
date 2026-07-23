@@ -14,6 +14,7 @@ import '../../../favorite/presentation/providers/favorite_provider.dart';
 import '../../../review/presentation/widgets/review_list_widget.dart';
 import '../providers/product_provider.dart';
 
+// Lớp ProductDetailPage giữ trách nhiệm chính của file này.
 class ProductDetailPage extends ConsumerStatefulWidget {
   final int productId;
 
@@ -23,11 +24,13 @@ class ProductDetailPage extends ConsumerStatefulWidget {
   ConsumerState<ProductDetailPage> createState() => _ProductDetailPageState();
 }
 
+// Lớp _ProductDetailPageState giữ trách nhiệm chính của file này.
 class _ProductDetailPageState extends ConsumerState<ProductDetailPage> {
   int _selectedQuantity = 1;
   String _selectedSize = '30x40 cm';
 
   void _handleDelete(BuildContext context) {
+    // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -59,6 +62,7 @@ class _ProductDetailPageState extends ConsumerState<ProductDetailPage> {
     );
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final productAsync = ref.watch(productDetailProvider(widget.productId));
@@ -563,6 +567,7 @@ class ContainerOverlay extends StatelessWidget {
 
   const ContainerOverlay({super.key, required this.child});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Container(

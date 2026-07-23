@@ -13,6 +13,7 @@ import '../../../address/presentation/providers/address_provider.dart';
 import '../../../address/presentation/widgets/address_selection_bottom_sheet.dart';
 import '../../../notification/presentation/providers/notification_provider.dart';
 
+// Lớp CheckoutPage giữ trách nhiệm chính của file này.
 class CheckoutPage extends ConsumerStatefulWidget {
   const CheckoutPage({
     super.key,
@@ -29,15 +30,19 @@ class CheckoutPage extends ConsumerStatefulWidget {
   ConsumerState<CheckoutPage> createState() => _CheckoutPageState();
 }
 
+// Lớp _CheckoutPageState giữ trách nhiệm chính của file này.
 class _CheckoutPageState extends ConsumerState<CheckoutPage> {
   final _noteController = TextEditingController();
   Address? _selectedAddress;
   String _paymentMethod = 'COD';
   bool _isLoading = false;
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _noteController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
@@ -133,6 +138,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     }
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final addressState = ref.watch(addressListProvider);

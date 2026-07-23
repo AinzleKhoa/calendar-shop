@@ -6,6 +6,7 @@ part 'admin_user_model.freezed.dart';
 part 'admin_user_model.g.dart';
 
 @freezed
+// Lớp AdminUserModel giữ trách nhiệm chính của file này.
 class AdminUserModel with _$AdminUserModel {
   const factory AdminUserModel({
     required int userId,
@@ -23,11 +24,13 @@ class AdminUserModel with _$AdminUserModel {
     DateTime? updatedAt,
   }) = _AdminUserModel;
 
+  // Parse JSON từ backend sang model Dart.
   factory AdminUserModel.fromJson(Map<String, dynamic> json) =>
       _$AdminUserModelFromJson(json);
 }
 
 extension AdminUserModelMapper on AdminUserModel {
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   AdminUser toEntity() => AdminUser(
         userId: userId,
         fullName: fullName,

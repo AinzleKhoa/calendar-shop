@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'review.freezed.dart';
 
 @freezed
+// Lớp Review giữ trách nhiệm chính của file này.
 class Review with _$Review {
   const factory Review({
     required int reviewId,

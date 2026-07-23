@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'product.freezed.dart';
 
 @freezed
+// Lớp Product giữ trách nhiệm chính của file này.
 class Product with _$Product {
   const factory Product({
     required int productId,

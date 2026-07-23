@@ -4,9 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/entities/admin_discount_stats.dart';
 import '../providers/admin_stats_provider.dart';
 
+// Lớp AdminDiscountStatsSection giữ trách nhiệm chính của file này.
 class AdminDiscountStatsSection extends ConsumerWidget {
   const AdminDiscountStatsSection({super.key});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final statsAsync = ref.watch(adminDiscountStatsProvider);
@@ -119,6 +121,7 @@ class AdminDiscountStatsSection extends ConsumerWidget {
   }
 }
 
+// Lớp _StatCard giữ trách nhiệm chính của file này.
 class _StatCard extends StatelessWidget {
   final String title;
   final String value;
@@ -134,6 +137,7 @@ class _StatCard extends StatelessWidget {
     required this.color,
   });
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Container(

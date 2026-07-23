@@ -13,6 +13,7 @@ class OrderCardWidget extends StatelessWidget {
     this.onTap,
   });
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final dateFormat = DateFormat('dd/MM/yyyy HH:mm');

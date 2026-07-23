@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/entities/category.dart';
 import '../providers/category_provider.dart';
 
+// Lớp CategoryFormDialog giữ trách nhiệm chính của file này.
 class CategoryFormDialog extends ConsumerStatefulWidget {
   final Category? category;
 
@@ -13,24 +14,31 @@ class CategoryFormDialog extends ConsumerStatefulWidget {
   ConsumerState<CategoryFormDialog> createState() => _CategoryFormDialogState();
 }
 
+// Lớp _CategoryFormDialogState giữ trách nhiệm chính của file này.
 class _CategoryFormDialogState extends ConsumerState<CategoryFormDialog> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _nameController;
   late TextEditingController _descController;
   bool _isActive = true;
 
+  // Khởi tạo controller và state cục bộ của màn hình.
   @override
   void initState() {
+    // Khởi tạo controller và state cục bộ của màn hình.
     super.initState();
     _nameController = TextEditingController(text: widget.category?.categoryName ?? '');
     _descController = TextEditingController(text: widget.category?.description ?? '');
     _isActive = (widget.category?.status ?? 'Active') == 'Active';
   }
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _nameController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _descController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
@@ -58,6 +66,7 @@ class _CategoryFormDialogState extends ConsumerState<CategoryFormDialog> {
     }
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final actionState = ref.watch(adminCategoryActionNotifierProvider);

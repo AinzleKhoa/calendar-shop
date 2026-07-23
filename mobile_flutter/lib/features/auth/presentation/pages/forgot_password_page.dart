@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../providers/auth_provider.dart';
 
+// Lớp ForgotPasswordPage giữ trách nhiệm chính của file này.
 class ForgotPasswordPage extends ConsumerStatefulWidget {
   const ForgotPasswordPage({super.key});
 
@@ -12,12 +13,16 @@ class ForgotPasswordPage extends ConsumerStatefulWidget {
   ConsumerState<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
 }
 
+// Lớp _ForgotPasswordPageState giữ trách nhiệm chính của file này.
 class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
   final _loginController = TextEditingController();
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _loginController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
@@ -47,6 +52,7 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
     );
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(authNotifierProvider);

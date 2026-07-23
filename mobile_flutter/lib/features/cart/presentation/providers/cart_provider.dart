@@ -50,6 +50,7 @@ DeleteCartItemUseCase deleteCartItemUseCase(DeleteCartItemUseCaseRef ref) {
 }
 
 /// Notifier quản lý danh sách giỏ hàng bất đồng bộ
+// Lớp Cart giữ trách nhiệm chính của file này.
 @riverpod
 class Cart extends _$Cart {
   @override
@@ -142,6 +143,7 @@ class Cart extends _$Cart {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<CheckedCoupon> checkCoupon(String code, double subTotal) {
     final useCase = CheckCouponUseCase(ref.read(cartRepositoryProvider));
     return useCase(code, subTotal);

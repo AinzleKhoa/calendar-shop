@@ -8,9 +8,11 @@ import '../../../admin/presentation/widgets/admin_page_layout.dart';
 import '../../../admin/presentation/widgets/admin_category_stats_section.dart';
 import '../../../admin/presentation/providers/admin_stats_provider.dart';
 
+// Lớp AdminCategoryPage giữ trách nhiệm chính của file này.
 class AdminCategoryPage extends ConsumerWidget {
   const AdminCategoryPage({super.key});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final categoriesAsync = ref.watch(categoryListProvider);
@@ -22,6 +24,7 @@ class AdminCategoryPage extends ConsumerWidget {
         IconButton(
           icon: const Icon(Icons.add_box_outlined, size: 28, color: Colors.blue),
           onPressed: () {
+            // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
             showDialog(
               context: context,
               builder: (context) => const CategoryFormDialog(),
@@ -91,6 +94,7 @@ class AdminCategoryPage extends ConsumerWidget {
                               IconButton(
                                 icon: const Icon(Icons.edit_outlined, color: Colors.blue),
                                 onPressed: () {
+                                  // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
                                   showDialog(
                                     context: context,
                                     builder: (context) => CategoryFormDialog(category: cat),
@@ -100,6 +104,7 @@ class AdminCategoryPage extends ConsumerWidget {
                               IconButton(
                                 icon: const Icon(Icons.delete_outline, color: Colors.red),
                                 onPressed: () {
+                                  // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
                                   showDialog(
                                     context: context,
                                     builder: (ctx) => AlertDialog(

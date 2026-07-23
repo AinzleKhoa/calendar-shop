@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import '../../domain/entities/admin_coupon.dart';
 import '../providers/admin_coupon_provider.dart';
 
+// Lớp AdminCouponFormPage giữ trách nhiệm chính của file này.
 class AdminCouponFormPage extends ConsumerStatefulWidget {
   final AdminCoupon? coupon;
 
@@ -14,6 +15,7 @@ class AdminCouponFormPage extends ConsumerStatefulWidget {
   ConsumerState<AdminCouponFormPage> createState() => _AdminCouponFormPageState();
 }
 
+// Lớp _AdminCouponFormPageState giữ trách nhiệm chính của file này.
 class _AdminCouponFormPageState extends ConsumerState<AdminCouponFormPage> {
   final _formKey = GlobalKey<FormState>();
   final _codeController = TextEditingController();
@@ -29,8 +31,10 @@ class _AdminCouponFormPageState extends ConsumerState<AdminCouponFormPage> {
 
   bool get _isEditing => widget.coupon != null;
 
+  // Khởi tạo controller và state cục bộ của màn hình.
   @override
   void initState() {
+    // Khởi tạo controller và state cục bộ của màn hình.
     super.initState();
     final coupon = widget.coupon;
     if (coupon != null) {
@@ -50,16 +54,24 @@ class _AdminCouponFormPageState extends ConsumerState<AdminCouponFormPage> {
     }
   }
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _codeController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _descriptionController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _discountValueController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _minOrderValueController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _usageLimitController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final actionState = ref.watch(adminCouponActionNotifierProvider);
@@ -328,6 +340,7 @@ class _AdminCouponFormPageState extends ConsumerState<AdminCouponFormPage> {
   }
 }
 
+// Lớp _DateField giữ trách nhiệm chính của file này.
 class _DateField extends StatelessWidget {
   final String label;
   final String value;
@@ -339,6 +352,7 @@ class _DateField extends StatelessWidget {
     required this.onTap,
   });
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return InkWell(

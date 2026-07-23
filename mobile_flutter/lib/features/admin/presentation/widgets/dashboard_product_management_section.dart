@@ -6,9 +6,11 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../product/presentation/providers/product_provider.dart';
 import '../../../../core/widgets/product_card.dart';
 
+// Lớp DashboardProductManagementSection giữ trách nhiệm chính của file này.
 class DashboardProductManagementSection extends ConsumerWidget {
   const DashboardProductManagementSection({super.key});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final productsAsync = ref.watch(adminProductListProvider);

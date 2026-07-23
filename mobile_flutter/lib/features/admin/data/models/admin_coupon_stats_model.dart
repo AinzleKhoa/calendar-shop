@@ -1,5 +1,6 @@
 import '../../domain/entities/admin_coupon_stats.dart';
 
+// Lớp AdminCouponStatsModel giữ trách nhiệm chính của file này.
 class AdminCouponStatsModel {
   final int totalCoupons;
   final double totalCouponsGrowth;
@@ -13,6 +14,7 @@ class AdminCouponStatsModel {
     this.activeCouponsGrowth = 0.0,
   });
 
+  // Parse JSON từ backend sang model Dart.
   factory AdminCouponStatsModel.fromJson(Map<String, dynamic> json) {
     return AdminCouponStatsModel(
       totalCoupons: json['totalCoupons'] as int? ?? 0,
@@ -22,6 +24,7 @@ class AdminCouponStatsModel {
     );
   }
 
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   AdminCouponStats toEntity() {
     return AdminCouponStats(
       totalCoupons: totalCoupons,

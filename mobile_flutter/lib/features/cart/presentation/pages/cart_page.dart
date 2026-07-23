@@ -11,6 +11,7 @@ import '../../../../core/widgets/quantity_selector.dart';
 import '../../domain/entities/cart_item.dart';
 import '../providers/cart_provider.dart';
 
+// Lớp CartPage giữ trách nhiệm chính của file này.
 class CartPage extends ConsumerStatefulWidget {
   const CartPage({super.key});
 
@@ -18,6 +19,7 @@ class CartPage extends ConsumerStatefulWidget {
   ConsumerState<CartPage> createState() => _CartPageState();
 }
 
+// Lớp _CartPageState giữ trách nhiệm chính của file này.
 class _CartPageState extends ConsumerState<CartPage> {
   String? _couponCode;
   double _discountAmount = 0;
@@ -54,6 +56,7 @@ class _CartPageState extends ConsumerState<CartPage> {
   void _showCouponBottomSheet(BuildContext context, double cartTotal) {
     final couponController = TextEditingController(text: _couponCode);
 
+    // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -109,6 +112,7 @@ class _CartPageState extends ConsumerState<CartPage> {
     );
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final cartState = ref.watch(cartProvider);

@@ -1,5 +1,6 @@
 import '../repositories/admin_discount_repository.dart';
 
+// Lớp UpdateAdminDiscountUseCase giữ trách nhiệm chính của file này.
 class UpdateAdminDiscountUseCase {
   final AdminDiscountRepository repository;
 

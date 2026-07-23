@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Lớp AppColors giữ trách nhiệm chính của file này.
 class AppColors {
   AppColors._();
 
