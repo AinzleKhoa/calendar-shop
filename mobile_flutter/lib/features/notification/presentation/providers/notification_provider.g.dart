@@ -61,7 +61,7 @@ final unreadNotificationsCountProvider = AutoDisposeProvider<int>.internal(
 
 typedef UnreadNotificationsCountRef = AutoDisposeProviderRef<int>;
 String _$notificationNotifierHash() =>
-    r'bca6741e5c9996ed3f5bde60496fdbd5fd611824';
+    r'b00dd19f097a89cbe11403b79ec3a682e8eba7fd';
 
 /// Notifier quản lý danh sách thông báo của người dùng.
 ///
