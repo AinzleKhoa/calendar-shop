@@ -41,6 +41,7 @@ final checkFavoriteProvider = FutureProvider.family.autoDispose<bool, int>((ref,
   return ref.watch(checkFavoriteUseCaseProvider)(productId);
 });
 
+// Lớp FavoriteActionState giữ trách nhiệm chính của file này.
 class FavoriteActionState {
   final bool isLoading;
   final String? error;
@@ -51,6 +52,7 @@ class FavoriteActionState {
   });
 }
 
+// Lớp FavoriteActionNotifier giữ trách nhiệm chính của file này.
 class FavoriteActionNotifier extends StateNotifier<FavoriteActionState> {
   final Ref ref;
 

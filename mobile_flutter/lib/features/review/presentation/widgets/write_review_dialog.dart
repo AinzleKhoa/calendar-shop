@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/review_provider.dart';
 
+// Lớp WriteReviewDialog giữ trách nhiệm chính của file này.
 class WriteReviewDialog extends ConsumerStatefulWidget {
   final int orderItemId;
   final int productId;
@@ -16,16 +17,21 @@ class WriteReviewDialog extends ConsumerStatefulWidget {
   ConsumerState<WriteReviewDialog> createState() => _WriteReviewDialogState();
 }
 
+// Lớp _WriteReviewDialogState giữ trách nhiệm chính của file này.
 class _WriteReviewDialogState extends ConsumerState<WriteReviewDialog> {
   int _rating = 5;
   final _commentController = TextEditingController();
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _commentController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final actionState = ref.watch(reviewActionNotifierProvider);

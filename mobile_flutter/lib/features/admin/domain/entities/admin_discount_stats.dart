@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'admin_discount_stats.freezed.dart';
 
 @freezed
+// Lớp AdminDiscountStats giữ trách nhiệm chính của file này.
 class AdminDiscountStats with _$AdminDiscountStats {
   const factory AdminDiscountStats({
     @Default(0) int totalDiscounts,
@@ -14,6 +15,7 @@ class AdminDiscountStats with _$AdminDiscountStats {
 }
 
 @freezed
+// Lớp DiscountTypeDistribution giữ trách nhiệm chính của file này.
 class DiscountTypeDistribution with _$DiscountTypeDistribution {
   const factory DiscountTypeDistribution({
     @Default('') String type,
@@ -23,6 +25,7 @@ class DiscountTypeDistribution with _$DiscountTypeDistribution {
 }
 
 @freezed
+// Lớp TopDiscount giữ trách nhiệm chính của file này.
 class TopDiscount with _$TopDiscount {
   const factory TopDiscount({
     @Default(0) int discountId,

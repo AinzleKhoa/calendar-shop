@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 
+// Lớp ApiLoggingInterceptor giữ trách nhiệm chính của file này.
 class ApiLoggingInterceptor extends Interceptor {
   final _logger = Logger(
     printer: PrettyPrinter(

@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'admin_user.freezed.dart';
 
 @freezed
+// Lớp AdminUser giữ trách nhiệm chính của file này.
 class AdminUser with _$AdminUser {
   const factory AdminUser({
     required int userId,

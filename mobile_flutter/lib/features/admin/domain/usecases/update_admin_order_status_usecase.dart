@@ -1,5 +1,6 @@
 import '../repositories/admin_order_repository.dart';
 
+// Lớp UpdateAdminOrderStatusUseCase giữ trách nhiệm chính của file này.
 class UpdateAdminOrderStatusUseCase {
   final AdminOrderRepository repository;
 

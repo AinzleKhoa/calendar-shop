@@ -7,11 +7,13 @@ import '../../domain/entities/admin_dashboard_stats.dart';
 import '../providers/admin_dashboard_provider.dart';
 import 'dashboard_section_card.dart';
 
+// Lớp BestSellingProductsCard giữ trách nhiệm chính của file này.
 class BestSellingProductsCard extends ConsumerWidget {
   final List<BestSellingProduct> products;
 
   const BestSellingProductsCard({super.key, required this.products});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final days = ref.watch(dashboardDaysFilterProvider);

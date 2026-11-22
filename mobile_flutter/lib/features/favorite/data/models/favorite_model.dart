@@ -5,6 +5,7 @@ part 'favorite_model.freezed.dart';
 part 'favorite_model.g.dart';
 
 @freezed
+// Lớp FavoriteModel giữ trách nhiệm chính của file này.
 class FavoriteModel with _$FavoriteModel {
   const factory FavoriteModel({
     required int favoriteId,
@@ -17,11 +18,13 @@ class FavoriteModel with _$FavoriteModel {
     required DateTime createdAt,
   }) = _FavoriteModel;
 
+  // Parse JSON từ backend sang model Dart.
   factory FavoriteModel.fromJson(Map<String, dynamic> json) =>
       _$FavoriteModelFromJson(json);
 }
 
 extension FavoriteModelMapper on FavoriteModel {
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   Favorite toEntity() => Favorite(
         favoriteId: favoriteId,
         productId: productId,

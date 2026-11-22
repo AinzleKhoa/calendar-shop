@@ -23,6 +23,7 @@ final categoryListProvider = FutureProvider.autoDispose<List<Category>>((ref) as
   return ref.watch(getCategoriesUseCaseProvider)();
 });
 
+// Lớp AdminCategoryActionState giữ trách nhiệm chính của file này.
 class AdminCategoryActionState {
   final bool isLoading;
   final String? error;
@@ -35,11 +36,13 @@ class AdminCategoryActionState {
   });
 }
 
+// Lớp AdminCategoryActionNotifier giữ trách nhiệm chính của file này.
 class AdminCategoryActionNotifier extends StateNotifier<AdminCategoryActionState> {
   final Ref ref;
 
   AdminCategoryActionNotifier(this.ref) : super(const AdminCategoryActionState());
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> createCategory(String name, String? description, String status) async {
     state = const AdminCategoryActionState(isLoading: true);
     try {
@@ -53,6 +56,7 @@ class AdminCategoryActionNotifier extends StateNotifier<AdminCategoryActionState
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> updateCategory(int id, String name, String? description, String status) async {
     state = const AdminCategoryActionState(isLoading: true);
     try {
@@ -66,6 +70,7 @@ class AdminCategoryActionNotifier extends StateNotifier<AdminCategoryActionState
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> deleteCategory(int id) async {
     state = const AdminCategoryActionState(isLoading: true);
     try {

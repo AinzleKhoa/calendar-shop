@@ -1,5 +1,6 @@
 import '../../domain/entities/checked_coupon.dart';
 
+// Lớp CheckedCouponModel giữ trách nhiệm chính của file này.
 class CheckedCouponModel {
   final String code;
   final String discountType;
@@ -11,6 +12,7 @@ class CheckedCouponModel {
     required this.discountValue,
   });
 
+  // Parse JSON từ backend sang model Dart.
   factory CheckedCouponModel.fromJson(Map<String, dynamic> json) {
     return CheckedCouponModel(
       code: json['code'] as String,
@@ -19,6 +21,7 @@ class CheckedCouponModel {
     );
   }
 
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   CheckedCoupon toEntity() => CheckedCoupon(
         code: code,
         discountType: discountType,

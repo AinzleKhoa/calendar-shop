@@ -5,6 +5,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../notification/presentation/providers/notification_provider.dart';
 
+// Lớp AdminPageLayout giữ trách nhiệm chính của file này.
 class AdminPageLayout extends ConsumerWidget {
   final String title;
   final String currentRoute;
@@ -21,6 +22,7 @@ class AdminPageLayout extends ConsumerWidget {
     this.floatingActionButton,
   });
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final unreadNotifications = ref.watch(unreadNotificationsCountProvider);

@@ -10,6 +10,7 @@ class CartRepositoryImpl implements CartRepository {
 
   CartRepositoryImpl(this.remoteDataSource);
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<List<CartItemEntity>> getCart() async {
     // 1. Gọi remote datasource để lấy danh sách DTO models
@@ -33,24 +34,29 @@ class CartRepositoryImpl implements CartRepository {
         .toList();
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<void> addToCart(int productId, int quantity) {
     return remoteDataSource.addToCart(productId, quantity);
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<void> updateCartItem(int cartItemId, int quantity, bool isSelected) {
     return remoteDataSource.updateCartItem(cartItemId, quantity, isSelected);
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<void> deleteCartItem(int cartItemId) {
     return remoteDataSource.deleteCartItem(cartItemId);
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<CheckedCoupon> checkCoupon(String code, double subTotal) async {
     final model = await remoteDataSource.checkCoupon(code, subTotal);
+    // Chuyển model DTO sang entity domain trước khi đưa lên UI.
     return model.toEntity();
   }
 }

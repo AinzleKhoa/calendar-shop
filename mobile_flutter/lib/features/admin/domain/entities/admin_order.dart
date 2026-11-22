@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'admin_order.freezed.dart';
 
 @freezed
+// Lớp AdminOrderItem giữ trách nhiệm chính của file này.
 class AdminOrderItem with _$AdminOrderItem {
   const factory AdminOrderItem({
     required int orderItemId,
@@ -16,6 +17,7 @@ class AdminOrderItem with _$AdminOrderItem {
 }
 
 @freezed
+// Lớp AdminOrder giữ trách nhiệm chính của file này.
 class AdminOrder with _$AdminOrder {
   const factory AdminOrder({
     required int orderId,

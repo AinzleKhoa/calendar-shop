@@ -6,17 +6,20 @@ import '../datasources/auth_remote_datasource.dart';
 import '../models/auth_result_model.dart';
 import '../models/user_model.dart';
 
+// Lớp AuthRepositoryImpl giữ trách nhiệm chính của file này.
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
   final TokenStorage tokenStorage;
 
   AuthRepositoryImpl({required this.remoteDataSource, required this.tokenStorage});
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<AuthResult> login({required String login, required String password}) async {
     final result = await remoteDataSource.login(login: login, password: password);
     await tokenStorage.saveToken(result.token);
     await tokenStorage.saveRefreshToken(result.refreshToken);
+    // Chuyển model DTO sang entity domain trước khi đưa lên UI.
     return result.toEntity();
   }
 
@@ -25,9 +28,11 @@ class AuthRepositoryImpl implements AuthRepository {
     final result = await remoteDataSource.googleLogin(email: email, fullName: fullName, photoUrl: photoUrl, idToken: idToken);
     await tokenStorage.saveToken(result.token);
     await tokenStorage.saveRefreshToken(result.refreshToken);
+    // Chuyển model DTO sang entity domain trước khi đưa lên UI.
     return result.toEntity();
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<String> register({required String fullName, String? email, String? phone, required String password}) async {
     final result = await remoteDataSource.register(fullName: fullName, email: email, phone: phone, password: password);
@@ -37,9 +42,11 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<AppUser> me() async {
     final userModel = await remoteDataSource.me();
+    // Chuyển model DTO sang entity domain trước khi đưa lên UI.
     return userModel.toEntity();
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<AppUser> updateProfile({
     required String fullName,
@@ -57,9 +64,11 @@ class AuthRepositoryImpl implements AuthRepository {
       gender: gender,
       dateOfBirth: dateOfBirth,
     );
+    // Chuyển model DTO sang entity domain trước khi đưa lên UI.
     return userModel.toEntity();
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<void> changePassword({required String oldPassword, required String newPassword}) {
     return remoteDataSource.changePassword(oldPassword: oldPassword, newPassword: newPassword);
@@ -74,17 +83,20 @@ class AuthRepositoryImpl implements AuthRepository {
     );
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<String> verifyResetCode({required String resetCode}) async {
     final result = await remoteDataSource.verifyResetCode(resetCode: resetCode);
     return result.message;
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<void> resetPassword({required String resetToken, required String newPassword}) {
     return remoteDataSource.resetPassword(resetToken: resetToken, newPassword: newPassword);
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<String> confirmEmail({required String email, required String otp}) async {
     final result = await remoteDataSource.confirmEmail(email: email, otp: otp);
@@ -97,6 +109,7 @@ class AuthRepositoryImpl implements AuthRepository {
     return result.message;
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   @override
   Future<void> logout() async {
     final refreshToken = await tokenStorage.getRefreshToken();

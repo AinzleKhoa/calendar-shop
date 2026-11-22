@@ -4,11 +4,13 @@ import 'package:intl/intl.dart';
 
 import '../providers/review_provider.dart';
 
+// Lớp ReviewListWidget giữ trách nhiệm chính của file này.
 class ReviewListWidget extends ConsumerWidget {
   final int productId;
 
   const ReviewListWidget({super.key, required this.productId});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final summaryAsync = ref.watch(productRatingSummaryProvider(productId));

@@ -1,3 +1,4 @@
+// Lớp AdminDashboardStats giữ trách nhiệm chính của file này.
 class AdminDashboardStats {
   final int totalUsers;
   final double totalRevenue;
@@ -36,6 +37,7 @@ class AdminDashboardStats {
   });
 }
 
+// Lớp StatusCount giữ trách nhiệm chính của file này.
 class StatusCount {
   final String status;
   final int total;
@@ -46,6 +48,7 @@ class StatusCount {
   });
 }
 
+// Lớp BestSellingProduct giữ trách nhiệm chính của file này.
 class BestSellingProduct {
   final int productId;
   final String productName;
@@ -58,6 +61,7 @@ class BestSellingProduct {
   });
 }
 
+// Lớp RevenueByDay giữ trách nhiệm chính của file này.
 class RevenueByDay {
   final DateTime date;
   final double revenue;
@@ -70,6 +74,7 @@ class RevenueByDay {
   });
 }
 
+// Lớp RevenueByMonth giữ trách nhiệm chính của file này.
 class RevenueByMonth {
   final int year;
   final int month;
@@ -84,6 +89,7 @@ class RevenueByMonth {
   });
 }
 
+// Lớp RecentOrder giữ trách nhiệm chính của file này.
 class RecentOrder {
   final int orderId;
   final String customerName;
@@ -104,6 +110,7 @@ class RecentOrder {
   });
 }
 
+// Lớp LowStockProduct giữ trách nhiệm chính của file này.
 class LowStockProduct {
   final int productId;
   final String productName;

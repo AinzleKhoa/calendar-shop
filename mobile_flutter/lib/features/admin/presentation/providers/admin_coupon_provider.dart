@@ -56,6 +56,7 @@ final adminCouponDetailProvider =
   return ref.watch(getAdminCouponByIdUseCaseProvider)(id);
 });
 
+// Lớp AdminCouponActionState giữ trách nhiệm chính của file này.
 class AdminCouponActionState {
   final bool isLoading;
   final String? error;
@@ -68,12 +69,14 @@ class AdminCouponActionState {
   });
 }
 
+// Lớp AdminCouponActionNotifier giữ trách nhiệm chính của file này.
 class AdminCouponActionNotifier extends StateNotifier<AdminCouponActionState> {
   final Ref ref;
 
   AdminCouponActionNotifier(this.ref)
       : super(const AdminCouponActionState());
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> createCoupon({
     required String code,
     String? description,
@@ -107,6 +110,7 @@ class AdminCouponActionNotifier extends StateNotifier<AdminCouponActionState> {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> updateCoupon(
     int id, {
     required String code,
@@ -143,6 +147,7 @@ class AdminCouponActionNotifier extends StateNotifier<AdminCouponActionState> {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> updateStatus(int id, String status) async {
     state = const AdminCouponActionState(isLoading: true);
     try {

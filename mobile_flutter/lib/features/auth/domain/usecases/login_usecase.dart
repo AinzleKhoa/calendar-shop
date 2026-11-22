@@ -1,6 +1,7 @@
 import '../entities/auth_result.dart';
 import '../repositories/auth_repository.dart';
 
+// Lớp LoginUseCase giữ trách nhiệm chính của file này.
 class LoginUseCase {
   final AuthRepository repository;
 

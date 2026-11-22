@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 
+// Lớp CategoryTabBar giữ trách nhiệm chính của file này.
 class CategoryTabBar extends StatelessWidget {
   final List<String> categories;
   final String selectedCategory;
@@ -13,6 +14,7 @@ class CategoryTabBar extends StatelessWidget {
     required this.onSelectCategory,
   });
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return SizedBox(

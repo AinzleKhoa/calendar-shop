@@ -7,6 +7,7 @@ import '../../features/favorite/presentation/providers/favorite_provider.dart';
 import '../../features/product/domain/entities/product.dart';
 import '../theme/app_colors.dart';
 
+// Lớp ProductCard giữ trách nhiệm chính của file này.
 class ProductCard extends ConsumerWidget {
   final Product product;
   final VoidCallback onTap;
@@ -17,6 +18,7 @@ class ProductCard extends ConsumerWidget {
     required this.onTap,
   });
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isFavoriteAsync = ref.watch(checkFavoriteProvider(product.productId));

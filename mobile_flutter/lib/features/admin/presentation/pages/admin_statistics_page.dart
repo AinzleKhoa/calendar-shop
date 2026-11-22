@@ -12,9 +12,11 @@ import '../widgets/low_stock_products_card.dart';
 import '../widgets/admin_page_layout.dart';
 import '../../../../core/theme/app_colors.dart';
 
+// Lớp AdminStatisticsPage giữ trách nhiệm chính của file này.
 class AdminStatisticsPage extends ConsumerWidget {
   const AdminStatisticsPage({super.key});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final statsAsync = ref.watch(adminDashboardStatsProvider);
@@ -72,9 +74,11 @@ class AdminStatisticsPage extends ConsumerWidget {
   }
 }
 
+// Lớp _DashboardLoadingState giữ trách nhiệm chính của file này.
 class _DashboardLoadingState extends StatelessWidget {
   const _DashboardLoadingState();
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return const Center(
@@ -93,6 +97,7 @@ class _DashboardLoadingState extends StatelessWidget {
   }
 }
 
+// Lớp _DashboardErrorState giữ trách nhiệm chính của file này.
 class _DashboardErrorState extends StatelessWidget {
   final String message;
   final VoidCallback onRetry;
@@ -102,6 +107,7 @@ class _DashboardErrorState extends StatelessWidget {
     required this.onRetry,
   });
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Center(

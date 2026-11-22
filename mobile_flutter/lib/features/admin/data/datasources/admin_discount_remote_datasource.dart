@@ -2,11 +2,13 @@ import '../../../../core/network/api_client.dart';
 import '../../../../core/constants/api_constants.dart';
 import '../models/admin_discount_model.dart';
 
+// Lớp AdminDiscountRemoteDataSource giữ trách nhiệm chính của file này.
 class AdminDiscountRemoteDataSource {
   final ApiClient apiClient;
 
   AdminDiscountRemoteDataSource(this.apiClient);
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<({List<AdminDiscountModel> items, int totalCount})> getDiscounts({
     String? searchQuery,
     int page = 1,
@@ -47,6 +49,7 @@ class AdminDiscountRemoteDataSource {
     }
 
     final url = '${ApiConstants.discounts}?${queryParams.join('&')}';
+    // Gọi API GET để lấy dữ liệu từ backend.
     final response = await apiClient.dio.get(url);
     
     final List data;
@@ -69,29 +72,42 @@ class AdminDiscountRemoteDataSource {
       data = [];
     }
     
+    // Parse JSON từ backend sang model Dart.
     final items = data.map((e) => AdminDiscountModel.fromJson(e)).toList();
     return (items: items, totalCount: totalCount);
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<AdminDiscountModel> getDiscountById(int id) async {
+    // Gọi API GET để lấy dữ liệu từ backend.
     final response = await apiClient.dio.get('${ApiConstants.discounts}/$id');
+    // Parse JSON từ backend sang model Dart.
     return AdminDiscountModel.fromJson(response.data);
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<AdminDiscountModel> createDiscount(Map<String, dynamic> data) async {
+    // Gọi API POST để tạo dữ liệu hoặc kích hoạt hành động backend.
     final response = await apiClient.dio.post(ApiConstants.discounts, data: data);
+    // Parse JSON từ backend sang model Dart.
     return AdminDiscountModel.fromJson(response.data);
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> updateDiscount(int id, Map<String, dynamic> data) async {
+    // Gọi API PUT để cập nhật dữ liệu trên backend.
     await apiClient.dio.put('${ApiConstants.discounts}/$id', data: data);
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> deleteDiscount(int id) async {
+    // Gọi API DELETE để xóa dữ liệu trên backend.
     await apiClient.dio.delete('${ApiConstants.discounts}/$id');
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> updateDiscountStatus(int id, String status) async {
+    // Gọi API PUT để cập nhật dữ liệu trên backend.
     await apiClient.dio.put('${ApiConstants.discounts}/$id/status', data: {'status': status});
   }
 }

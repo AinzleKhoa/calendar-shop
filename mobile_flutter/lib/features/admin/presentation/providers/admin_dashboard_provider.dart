@@ -36,6 +36,7 @@ final exportRevenueExcelUseCaseProvider =
   ),
 );
 
+// Lớp DashboardDaysFilter giữ trách nhiệm chính của file này.
 @riverpod
 class DashboardDaysFilter extends _$DashboardDaysFilter {
   @override

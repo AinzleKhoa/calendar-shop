@@ -1,6 +1,8 @@
 import '../entities/product.dart';
 
+// Lớp ProductRepository giữ trách nhiệm chính của file này.
 abstract class ProductRepository {
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<List<Product>> getProducts({
     int? categoryId,
     String? search,
@@ -13,8 +15,10 @@ abstract class ProductRepository {
     int? skip,
   });
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<Product> getProductById(int id);
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<Product> createProduct({
     required int categoryId,
     required String productName,
@@ -26,6 +30,7 @@ abstract class ProductRepository {
     required String status,
   });
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> updateProduct(
     int id, {
     required int categoryId,
@@ -38,5 +43,6 @@ abstract class ProductRepository {
     required String status,
   });
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> deleteProduct(int id);
 }

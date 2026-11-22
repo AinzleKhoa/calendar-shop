@@ -2,11 +2,13 @@ import '../../../../core/constants/api_constants.dart';
 import '../../../../core/network/api_client.dart';
 import '../models/product_model.dart';
 
+// Lớp ProductRemoteDataSource giữ trách nhiệm chính của file này.
 class ProductRemoteDataSource {
   final ApiClient apiClient;
 
   ProductRemoteDataSource(this.apiClient);
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<List<ProductModel>> getProducts({
     int? categoryId,
     String? search,
@@ -51,6 +53,7 @@ class ProductRemoteDataSource {
       }
 
       final response =
+          // Gọi API GET để lấy dữ liệu từ backend.
           await apiClient.dio.get(ApiConstants.products, queryParameters: {
         'includeHidden': includeHidden,
         if (filterQuery != null) '\$filter': filterQuery,
@@ -68,21 +71,26 @@ class ProductRemoteDataSource {
         dataList = [];
       }
 
+      // Parse JSON từ backend sang model Dart.
       return dataList.map((e) => ProductModel.fromJson(e)).toList();
     } catch (e) {
       throw apiClient.handleError(e);
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<ProductModel> getProductById(int id) async {
     try {
+      // Gọi API GET để lấy dữ liệu từ backend.
       final response = await apiClient.dio.get('${ApiConstants.products}/$id');
+      // Parse JSON từ backend sang model Dart.
       return ProductModel.fromJson(response.data);
     } catch (e) {
       throw apiClient.handleError(e);
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<ProductModel> createProduct({
     required int categoryId,
     required String productName,
@@ -94,6 +102,7 @@ class ProductRemoteDataSource {
     required String status,
   }) async {
     try {
+      // Gọi API POST để tạo dữ liệu hoặc kích hoạt hành động backend.
       final response = await apiClient.dio.post(ApiConstants.products, data: {
         'categoryId': categoryId,
         'productName': productName,
@@ -104,12 +113,14 @@ class ProductRemoteDataSource {
         'calendarType': calendarType,
         'status': status,
       });
+      // Parse JSON từ backend sang model Dart.
       return ProductModel.fromJson(response.data);
     } catch (e) {
       throw apiClient.handleError(e);
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> updateProduct(
     int id, {
     required int categoryId,
@@ -122,6 +133,7 @@ class ProductRemoteDataSource {
     required String status,
   }) async {
     try {
+      // Gọi API PUT để cập nhật dữ liệu trên backend.
       await apiClient.dio.put('${ApiConstants.products}/$id', data: {
         'categoryId': categoryId,
         'productName': productName,
@@ -137,8 +149,10 @@ class ProductRemoteDataSource {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> deleteProduct(int id) async {
     try {
+      // Gọi API DELETE để xóa dữ liệu trên backend.
       await apiClient.dio.delete('${ApiConstants.products}/$id');
     } catch (e) {
       throw apiClient.handleError(e);

@@ -7,6 +7,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../providers/admin_dashboard_provider.dart';
 import 'dashboard_section_card.dart';
 
+// Lớp AdminDashboardHeader giữ trách nhiệm chính của file này.
 class AdminDashboardHeader extends ConsumerStatefulWidget {
   const AdminDashboardHeader({super.key});
 
@@ -14,6 +15,7 @@ class AdminDashboardHeader extends ConsumerStatefulWidget {
   ConsumerState<AdminDashboardHeader> createState() => _AdminDashboardHeaderState();
 }
 
+// Lớp _AdminDashboardHeaderState giữ trách nhiệm chính của file này.
 class _AdminDashboardHeaderState extends ConsumerState<AdminDashboardHeader> {
   bool _isExporting = false;
 
@@ -52,6 +54,7 @@ class _AdminDashboardHeaderState extends ConsumerState<AdminDashboardHeader> {
     }
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Padding(

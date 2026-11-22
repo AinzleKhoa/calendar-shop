@@ -7,6 +7,7 @@ import '../../features/cart/presentation/providers/cart_provider.dart';
 import '../../features/notification/presentation/providers/notification_provider.dart';
 import '../theme/app_colors.dart';
 
+// Lớp MainScaffold giữ trách nhiệm chính của file này.
 class MainScaffold extends ConsumerWidget {
   final Widget child;
   final String currentPath;
@@ -44,6 +45,7 @@ class MainScaffold extends ConsumerWidget {
     }
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cartState = ref.watch(cartProvider);

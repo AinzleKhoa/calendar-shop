@@ -5,6 +5,7 @@ part 'address_model.freezed.dart';
 part 'address_model.g.dart';
 
 @freezed
+// Lớp AddressModel giữ trách nhiệm chính của file này.
 class AddressModel with _$AddressModel {
   const factory AddressModel({
     required int addressId,
@@ -20,11 +21,13 @@ class AddressModel with _$AddressModel {
     DateTime? updatedAt,
   }) = _AddressModel;
 
+  // Parse JSON từ backend sang model Dart.
   factory AddressModel.fromJson(Map<String, dynamic> json) =>
       _$AddressModelFromJson(json);
 
   const AddressModel._();
 
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   Address toEntity() {
     return Address(
       addressId: addressId,

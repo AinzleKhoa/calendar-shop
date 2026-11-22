@@ -1,5 +1,6 @@
 import '../../domain/entities/category.dart';
 
+// Lớp CategoryModel giữ trách nhiệm chính của file này.
 class CategoryModel extends Category {
   const CategoryModel({
     required super.categoryId,
@@ -8,6 +9,7 @@ class CategoryModel extends Category {
     required super.status,
   });
 
+  // Parse JSON từ backend sang model Dart.
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
     return CategoryModel(
       categoryId: json['categoryId'],
@@ -17,6 +19,7 @@ class CategoryModel extends Category {
     );
   }
 
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   Category toEntity() => Category(
         categoryId: categoryId,
         categoryName: categoryName,

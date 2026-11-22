@@ -7,6 +7,7 @@ import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../domain/entities/notification_entity.dart';
 import '../providers/notification_provider.dart';
 
+// Lớp NotificationCenterPage giữ trách nhiệm chính của file này.
 class NotificationCenterPage extends ConsumerWidget {
   const NotificationCenterPage({super.key});
 
@@ -52,6 +53,7 @@ class NotificationCenterPage extends ConsumerWidget {
         '${local.hour.toString().padLeft(2, '0')}:${local.minute.toString().padLeft(2, '0')}';
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notificationState = ref.watch(notificationNotifierProvider);
@@ -262,6 +264,7 @@ class NotificationCenterPage extends ConsumerWidget {
   }
 }
 
+// Lớp _NotificationTile giữ trách nhiệm chính của file này.
 class _NotificationTile extends StatelessWidget {
   final NotificationEntity item;
   final IconData icon;
@@ -277,6 +280,7 @@ class _NotificationTile extends StatelessWidget {
     required this.onTap,
   });
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return InkWell(

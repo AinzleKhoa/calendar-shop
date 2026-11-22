@@ -38,6 +38,7 @@ final updateAdminUserRoleUseCaseProvider =
 
 final adminUserListRefreshProvider = StateProvider<int>((ref) => 0);
 
+// Lớp AdminUserFilter giữ trách nhiệm chính của file này.
 class AdminUserFilter {
   final String search;
   final String? role;
@@ -67,6 +68,7 @@ final adminUserDetailProvider = FutureProvider.autoDispose.family<AdminUser, int
   return ref.watch(getAdminUserByIdUseCaseProvider)(id);
 });
 
+// Lớp AdminUserActionState giữ trách nhiệm chính của file này.
 class AdminUserActionState {
   final bool isLoading;
   final String? error;
@@ -75,11 +77,13 @@ class AdminUserActionState {
   const AdminUserActionState({this.isLoading = false, this.error, this.isSuccess = false});
 }
 
+// Lớp AdminUserActionNotifier giữ trách nhiệm chính của file này.
 class AdminUserActionNotifier extends StateNotifier<AdminUserActionState> {
   final Ref ref;
 
   AdminUserActionNotifier(this.ref) : super(const AdminUserActionState());
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> updateStatus(int id, String status) async {
     state = const AdminUserActionState(isLoading: true);
     try {
@@ -98,6 +102,7 @@ class AdminUserActionNotifier extends StateNotifier<AdminUserActionState> {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> updateRole(int id, String role) async {
     state = const AdminUserActionState(isLoading: true);
     try {

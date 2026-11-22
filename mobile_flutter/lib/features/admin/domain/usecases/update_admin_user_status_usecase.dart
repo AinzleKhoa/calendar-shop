@@ -1,5 +1,6 @@
 import '../repositories/admin_user_repository.dart';
 
+// Lớp UpdateAdminUserStatusUseCase giữ trách nhiệm chính của file này.
 class UpdateAdminUserStatusUseCase {
   final AdminUserRepository repository;
 

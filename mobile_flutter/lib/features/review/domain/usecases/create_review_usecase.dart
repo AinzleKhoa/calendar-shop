@@ -1,5 +1,6 @@
 import '../repositories/review_repository.dart';
 
+// Lớp CreateReviewUseCase giữ trách nhiệm chính của file này.
 class CreateReviewUseCase {
   final ReviewRepository repository;
 

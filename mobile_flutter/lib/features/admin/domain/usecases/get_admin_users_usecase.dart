@@ -1,6 +1,7 @@
 import '../entities/admin_user.dart';
 import '../repositories/admin_user_repository.dart';
 
+// Lớp GetAdminUsersUseCase giữ trách nhiệm chính của file này.
 class GetAdminUsersUseCase {
   final AdminUserRepository repository;
 

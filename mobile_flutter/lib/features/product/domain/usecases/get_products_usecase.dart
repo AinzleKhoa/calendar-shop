@@ -1,6 +1,7 @@
 import '../entities/product.dart';
 import '../repositories/product_repository.dart';
 
+// Lớp GetProductsUseCase giữ trách nhiệm chính của file này.
 class GetProductsUseCase {
   final ProductRepository repository;
 

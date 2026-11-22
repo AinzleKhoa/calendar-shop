@@ -47,6 +47,7 @@ SetDefaultAddressUseCase setDefaultAddressUseCase(SetDefaultAddressUseCaseRef re
   return SetDefaultAddressUseCase(ref.watch(addressRepositoryProvider));
 }
 
+// Lớp AddressList giữ trách nhiệm chính của file này.
 @riverpod
 class AddressList extends _$AddressList {
   @override
@@ -54,6 +55,7 @@ class AddressList extends _$AddressList {
     return ref.watch(getAddressesUseCaseProvider)();
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> addAddress({
     required String receiverName,
     required String receiverPhone,
@@ -80,6 +82,7 @@ class AddressList extends _$AddressList {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> updateAddress({
     required int addressId,
     required String receiverName,
@@ -108,6 +111,7 @@ class AddressList extends _$AddressList {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> deleteAddress(int id) async {
     state = const AsyncValue.loading();
     try {
@@ -118,6 +122,7 @@ class AddressList extends _$AddressList {
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<void> setDefaultAddress(int id) async {
     state = const AsyncValue.loading();
     try {

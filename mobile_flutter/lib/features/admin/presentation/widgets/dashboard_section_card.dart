@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
 
+// Lớp DashboardSectionCard giữ trách nhiệm chính của file này.
 class DashboardSectionCard extends StatelessWidget {
   final Widget child;
 
   const DashboardSectionCard({super.key, required this.child});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Container(

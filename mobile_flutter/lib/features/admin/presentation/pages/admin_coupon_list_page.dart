@@ -10,9 +10,11 @@ import '../widgets/admin_page_layout.dart';
 import '../widgets/admin_coupon_stats_section.dart';
 import '../providers/admin_stats_provider.dart';
 
+// Lớp AdminCouponListPage giữ trách nhiệm chính của file này.
 class AdminCouponListPage extends ConsumerWidget {
   const AdminCouponListPage({super.key});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final couponsAsync = ref.watch(adminCouponListProvider);
@@ -87,11 +89,13 @@ class AdminCouponListPage extends ConsumerWidget {
   }
 }
 
+// Lớp _CouponCard giữ trách nhiệm chính của file này.
 class _CouponCard extends ConsumerWidget {
   final AdminCoupon coupon;
 
   const _CouponCard({required this.coupon});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currencyFormat = NumberFormat.currency(locale: 'vi_VN', symbol: 'đ');
@@ -194,6 +198,7 @@ class _CouponCard extends ConsumerWidget {
   }
 }
 
+// Lớp _InfoChip giữ trách nhiệm chính của file này.
 class _InfoChip extends StatelessWidget {
   final String label;
   final String value;
@@ -203,6 +208,7 @@ class _InfoChip extends StatelessWidget {
     required this.value,
   });
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import '../../../domain/entities/admin_order.dart';
 import '../../providers/admin_order_provider.dart';
 
+// Lớp AdminOrderDetailPage giữ trách nhiệm chính của file này.
 class AdminOrderDetailPage extends ConsumerStatefulWidget {
   final AdminOrder? order;
   final int? orderId;
@@ -14,14 +15,17 @@ class AdminOrderDetailPage extends ConsumerStatefulWidget {
   ConsumerState<AdminOrderDetailPage> createState() => _AdminOrderDetailPageState();
 }
 
+// Lớp _AdminOrderDetailPageState giữ trách nhiệm chính của file này.
 class _AdminOrderDetailPageState extends ConsumerState<AdminOrderDetailPage> {
   AdminOrder? _order;
   bool _isLoading = false;
   bool _isFetching = false;
   String? _errorMessage;
 
+  // Khởi tạo controller và state cục bộ của màn hình.
   @override
   void initState() {
+    // Khởi tạo controller và state cục bộ của màn hình.
     super.initState();
     _order = widget.order;
     if (_order == null && widget.orderId != null) {
@@ -81,6 +85,7 @@ class _AdminOrderDetailPageState extends ConsumerState<AdminOrderDetailPage> {
     }
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     if (_isFetching) {

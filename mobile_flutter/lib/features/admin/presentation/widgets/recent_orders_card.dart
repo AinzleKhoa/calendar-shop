@@ -8,11 +8,13 @@ import '../../domain/entities/admin_dashboard_stats.dart';
 import 'admin_dashboard_formatters.dart';
 import 'dashboard_section_card.dart';
 
+// Lớp RecentOrdersCard giữ trách nhiệm chính của file này.
 class RecentOrdersCard extends StatelessWidget {
   final List<RecentOrder> orders;
 
   const RecentOrdersCard({super.key, required this.orders});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     if (orders.isEmpty) {

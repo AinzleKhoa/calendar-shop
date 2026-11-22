@@ -1,3 +1,4 @@
+// Lớp CheckedCoupon giữ trách nhiệm chính của file này.
 class CheckedCoupon {
   final String code;
   final String discountType;

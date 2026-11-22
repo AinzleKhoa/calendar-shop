@@ -16,5 +16,6 @@ abstract class CartRepository {
   /// Xóa bỏ hoàn toàn một sản phẩm ra khỏi giỏ hàng
   Future<void> deleteCartItem(int cartItemId);
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<CheckedCoupon> checkCoupon(String code, double subTotal);
 }

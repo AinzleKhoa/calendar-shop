@@ -1,5 +1,6 @@
 import '../../domain/entities/chat_answer.dart';
 
+// Lớp ChatMessageItem giữ trách nhiệm chính của file này.
 class ChatMessageItem {
   final String text;
   final bool isUser;
@@ -14,6 +15,7 @@ class ChatMessageItem {
   });
 }
 
+// Lớp ChatState giữ trách nhiệm chính của file này.
 class ChatState {
   final bool isLoading;
   final String? error;

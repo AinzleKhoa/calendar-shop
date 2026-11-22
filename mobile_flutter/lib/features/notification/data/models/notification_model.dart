@@ -5,6 +5,7 @@ part 'notification_model.freezed.dart';
 part 'notification_model.g.dart';
 
 @freezed
+// Lớp NotificationModel giữ trách nhiệm chính của file này.
 class NotificationModel with _$NotificationModel {
   const factory NotificationModel({
     required int notificationId,
@@ -16,11 +17,13 @@ class NotificationModel with _$NotificationModel {
     required DateTime createdAt,
   }) = _NotificationModel;
 
+  // Parse JSON từ backend sang model Dart.
   factory NotificationModel.fromJson(Map<String, dynamic> json) =>
       _$NotificationModelFromJson(json);
 }
 
 extension NotificationModelMapper on NotificationModel {
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   NotificationEntity toEntity() => NotificationEntity(
         notificationId: notificationId,
         userId: userId,

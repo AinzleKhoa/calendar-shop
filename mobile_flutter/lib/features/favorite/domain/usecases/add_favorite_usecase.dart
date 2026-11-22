@@ -1,5 +1,6 @@
 import '../repositories/favorite_repository.dart';
 
+// Lớp AddFavoriteUseCase giữ trách nhiệm chính của file này.
 class AddFavoriteUseCase {
   final FavoriteRepository repository;
 

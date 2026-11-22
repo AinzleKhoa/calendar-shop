@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../providers/auth_provider.dart';
 
+// Lớp RegisterPage giữ trách nhiệm chính của file này.
 class RegisterPage extends ConsumerStatefulWidget {
   const RegisterPage({super.key});
 
@@ -14,6 +15,7 @@ class RegisterPage extends ConsumerStatefulWidget {
   ConsumerState<RegisterPage> createState() => _RegisterPageState();
 }
 
+// Lớp _RegisterPageState giữ trách nhiệm chính của file này.
 class _RegisterPageState extends ConsumerState<RegisterPage> {
   final _fullNameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -32,8 +34,10 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
 
   Timer? _debounceTimer;
 
+  // Khởi tạo controller và state cục bộ của màn hình.
   @override
   void initState() {
+    // Khởi tạo controller và state cục bộ của màn hình.
     super.initState();
     _fullNameController.addListener(_onFullNameChanged);
     _emailController.addListener(_onEmailChanged);
@@ -42,14 +46,21 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     _confirmPasswordController.addListener(_onConfirmPasswordChanged);
   }
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _fullNameController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _emailController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _phoneController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _passwordController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _confirmPasswordController.dispose();
     _debounceTimer?.cancel();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
@@ -231,6 +242,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     );
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(authNotifierProvider);
@@ -466,6 +478,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   }
 
   void _handleGoogleSignIn() {
+    // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
     showDialog(
       context: context,
       builder: (ctx) => Dialog(
@@ -730,6 +743,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     final customEmailController = TextEditingController();
     final customNameController = TextEditingController();
 
+    // Mở dialog/bottom sheet để người dùng nhập hoặc xác nhận thông tin.
     showDialog(
       context: context,
       builder: (ctx) => Dialog(

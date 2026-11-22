@@ -5,6 +5,7 @@ part 'product_rating_summary_model.freezed.dart';
 part 'product_rating_summary_model.g.dart';
 
 @freezed
+// Lớp ProductRatingSummaryModel giữ trách nhiệm chính của file này.
 class ProductRatingSummaryModel with _$ProductRatingSummaryModel {
   const factory ProductRatingSummaryModel({
     required int productId,
@@ -17,11 +18,13 @@ class ProductRatingSummaryModel with _$ProductRatingSummaryModel {
     required int star5,
   }) = _ProductRatingSummaryModel;
 
+  // Parse JSON từ backend sang model Dart.
   factory ProductRatingSummaryModel.fromJson(Map<String, dynamic> json) =>
       _$ProductRatingSummaryModelFromJson(json);
 }
 
 extension ProductRatingSummaryModelMapper on ProductRatingSummaryModel {
+  // Chuyển model DTO sang entity domain trước khi đưa lên UI.
   ProductRatingSummary toEntity() => ProductRatingSummary(
         productId: productId,
         averageRating: averageRating,

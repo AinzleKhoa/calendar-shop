@@ -1,3 +1,4 @@
+// Lớp CreateOrderInput giữ trách nhiệm chính của file này.
 class CreateOrderInput {
   const CreateOrderInput({
     required this.customerName,

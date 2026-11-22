@@ -6,9 +6,11 @@ import '../../../../core/constants/api_constants.dart';
 import '../../../../core/utils/currency_formatter.dart';
 import '../providers/favorite_provider.dart';
 
+// Lớp FavoritesPage giữ trách nhiệm chính của file này.
 class FavoritesPage extends ConsumerWidget {
   const FavoritesPage({super.key});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final favoritesAsyncValue = ref.watch(favoriteListProvider);

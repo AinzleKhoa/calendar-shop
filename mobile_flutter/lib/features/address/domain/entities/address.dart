@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'address.freezed.dart';
 
 @freezed
+// Lớp Address giữ trách nhiệm chính của file này.
 class Address with _$Address {
   const factory Address({
     required int addressId,

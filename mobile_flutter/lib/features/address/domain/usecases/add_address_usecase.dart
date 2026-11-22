@@ -1,6 +1,7 @@
 import '../../domain/entities/address.dart';
 import '../../domain/repositories/address_repository.dart';
 
+// Lớp AddAddressUseCase giữ trách nhiệm chính của file này.
 class AddAddressUseCase {
   final AddressRepository repository;
   AddAddressUseCase(this.repository);

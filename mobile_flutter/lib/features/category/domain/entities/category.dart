@@ -1,3 +1,4 @@
+// Lớp Category giữ trách nhiệm chính của file này.
 class Category {
   final int categoryId;
   final String categoryName;

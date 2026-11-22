@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 
+// Lớp CurrencyFormatter giữ trách nhiệm chính của file này.
 class CurrencyFormatter {
   static final _formatter = NumberFormat.currency(locale: 'vi_VN', symbol: 'đ');
 

@@ -1,5 +1,6 @@
 import '../repositories/product_repository.dart';
 
+// Lớp UpdateProductUseCase giữ trách nhiệm chính của file này.
 class UpdateProductUseCase {
   final ProductRepository repository;
 

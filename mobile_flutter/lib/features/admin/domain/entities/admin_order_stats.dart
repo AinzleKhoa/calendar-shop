@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'admin_order_stats.freezed.dart';
 
 @freezed
+// Lớp AdminOrderStats giữ trách nhiệm chính của file này.
 class AdminOrderStats with _$AdminOrderStats {
   const factory AdminOrderStats({
     @Default(0) int totalOrders,
@@ -18,6 +19,7 @@ class AdminOrderStats with _$AdminOrderStats {
 }
 
 @freezed
+// Lớp OrderStatusDistribution giữ trách nhiệm chính của file này.
 class OrderStatusDistribution with _$OrderStatusDistribution {
   const factory OrderStatusDistribution({
     @Default('') String status,
@@ -27,6 +29,7 @@ class OrderStatusDistribution with _$OrderStatusDistribution {
 }
 
 @freezed
+// Lớp RevenueByDay giữ trách nhiệm chính của file này.
 class RevenueByDay with _$RevenueByDay {
   const factory RevenueByDay({
     required DateTime date,

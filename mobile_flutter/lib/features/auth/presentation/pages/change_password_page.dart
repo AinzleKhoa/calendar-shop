@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../providers/auth_provider.dart';
 
+// Lớp ChangePasswordPage giữ trách nhiệm chính của file này.
 class ChangePasswordPage extends ConsumerStatefulWidget {
   const ChangePasswordPage({super.key});
 
@@ -12,19 +13,26 @@ class ChangePasswordPage extends ConsumerStatefulWidget {
   ConsumerState<ChangePasswordPage> createState() => _ChangePasswordPageState();
 }
 
+// Lớp _ChangePasswordPageState giữ trách nhiệm chính của file này.
 class _ChangePasswordPageState extends ConsumerState<ChangePasswordPage> {
   final _oldPasswordController = TextEditingController();
   final _newPasswordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _oldPasswordController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _newPasswordController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _confirmPasswordController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(authNotifierProvider);

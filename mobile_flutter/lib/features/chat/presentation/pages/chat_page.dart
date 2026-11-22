@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../providers/chat_provider.dart';
 
+// Lớp ChatPage giữ trách nhiệm chính của file này.
 class ChatPage extends ConsumerStatefulWidget {
   const ChatPage({super.key});
 
@@ -11,14 +12,19 @@ class ChatPage extends ConsumerStatefulWidget {
   ConsumerState<ChatPage> createState() => _ChatPageState();
 }
 
+// Lớp _ChatPageState giữ trách nhiệm chính của file này.
 class _ChatPageState extends ConsumerState<ChatPage> {
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _controller.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _scrollController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
@@ -37,6 +43,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
     }
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final chatState = ref.watch(chatNotifierProvider);
@@ -150,11 +157,13 @@ class _ChatPageState extends ConsumerState<ChatPage> {
   }
 }
 
+// Lớp _MessageBubble giữ trách nhiệm chính của file này.
 class _MessageBubble extends StatelessWidget {
   final ChatMessageItem message;
 
   const _MessageBubble({required this.message});
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final alignment = message.isUser ? Alignment.centerRight : Alignment.centerLeft;
@@ -196,6 +205,7 @@ class _MessageBubble extends StatelessWidget {
   }
 }
 
+// Lớp _FormattedMessageText giữ trách nhiệm chính của file này.
 class _FormattedMessageText extends StatelessWidget {
   final String text;
   final Color color;
@@ -207,6 +217,7 @@ class _FormattedMessageText extends StatelessWidget {
     required this.enableMarkdown,
   });
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final baseStyle = TextStyle(
@@ -254,9 +265,11 @@ class _FormattedMessageText extends StatelessWidget {
   }
 }
 
+// Lớp _TypingBubble giữ trách nhiệm chính của file này.
 class _TypingBubble extends StatelessWidget {
   const _TypingBubble();
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return const Align(

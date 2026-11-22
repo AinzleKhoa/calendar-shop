@@ -1,5 +1,6 @@
 import '../repositories/admin_coupon_repository.dart';
 
+// Lớp UpdateAdminCouponStatusUseCase giữ trách nhiệm chính của file này.
 class UpdateAdminCouponStatusUseCase {
   final AdminCouponRepository repository;
 

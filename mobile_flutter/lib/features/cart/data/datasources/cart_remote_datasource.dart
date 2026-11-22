@@ -36,6 +36,7 @@ class CartRemoteDataSource {
   /// Thêm một sản phẩm vào giỏ hàng
   Future<void> addToCart(int productId, int quantity) async {
     try {
+      // Gọi API POST để tạo dữ liệu hoặc kích hoạt hành động backend.
       await apiClient.dio.post(ApiConstants.cart, data: {
         'productId': productId,
         'quantity': quantity,
@@ -48,6 +49,7 @@ class CartRemoteDataSource {
   /// Cập nhật số lượng và tích chọn của sản phẩm trong giỏ hàng
   Future<void> updateCartItem(int cartItemId, int quantity, bool isSelected) async {
     try {
+      // Gọi API PUT để cập nhật dữ liệu trên backend.
       await apiClient.dio.put('${ApiConstants.cart}/$cartItemId', data: {
         'quantity': quantity,
         'isSelected': isSelected,
@@ -60,14 +62,17 @@ class CartRemoteDataSource {
   /// Xóa sản phẩm khỏi giỏ hàng
   Future<void> deleteCartItem(int cartItemId) async {
     try {
+      // Gọi API DELETE để xóa dữ liệu trên backend.
       await apiClient.dio.delete('${ApiConstants.cart}/$cartItemId');
     } catch (e) {
       throw apiClient.handleError(e);
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<CheckedCouponModel> checkCoupon(String code, double subTotal) async {
     try {
+      // Gọi API GET để lấy dữ liệu từ backend.
       final response = await apiClient.dio.get(
         '${ApiConstants.coupons}/check',
         queryParameters: {
@@ -76,6 +81,7 @@ class CartRemoteDataSource {
         },
       );
 
+      // Parse JSON từ backend sang model Dart.
       return CheckedCouponModel.fromJson(response.data as Map<String, dynamic>);
     } catch (e) {
       throw apiClient.handleError(e);

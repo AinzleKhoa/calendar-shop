@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 
+// Lớp QuantitySelector giữ trách nhiệm chính của file này.
 class QuantitySelector extends StatelessWidget {
   final int quantity;
   final ValueChanged<int> onChanged;
@@ -15,6 +16,7 @@ class QuantitySelector extends StatelessWidget {
     this.maxQuantity = 99,
   });
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     return Container(

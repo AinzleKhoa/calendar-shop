@@ -86,6 +86,7 @@ class ProductFilterState {
   }
 }
 
+// Lớp ProductFilterNotifier giữ trách nhiệm chính của file này.
 class ProductFilterNotifier extends StateNotifier<ProductFilterState> {
   ProductFilterNotifier() : super(const ProductFilterState());
 
@@ -181,11 +182,13 @@ class AdminProductActionState {
   });
 }
 
+// Lớp AdminProductActionNotifier giữ trách nhiệm chính của file này.
 class AdminProductActionNotifier extends StateNotifier<AdminProductActionState> {
   final Ref ref;
 
   AdminProductActionNotifier(this.ref) : super(const AdminProductActionState());
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> createProduct({
     required int categoryId,
     required String productName,
@@ -218,6 +221,7 @@ class AdminProductActionNotifier extends StateNotifier<AdminProductActionState> 
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> updateProduct(
     int id, {
     required int categoryId,
@@ -253,6 +257,7 @@ class AdminProductActionNotifier extends StateNotifier<AdminProductActionState> 
     }
   }
 
+  // Xử lý tác vụ bất đồng bộ chính của màn hình/tầng này.
   Future<bool> deleteProduct(int id) async {
     state = const AdminProductActionState(isLoading: true);
     try {

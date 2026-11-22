@@ -1,6 +1,7 @@
 import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart' show kIsWeb;
 
+// Lớp ApiConstants giữ trách nhiệm chính của file này.
 class ApiConstants {
   // Dynamically resolve localhost depending on the platform/environment:
   // - iOS Simulator / Web: localhost
@@ -65,4 +66,5 @@ class ApiConstants {
   static const String notifications = '/notifications';
   static const String chatAsk = '/chat/ask';
   static const String addresses = '/addresses';
+  static const String uploads = '/uploads';
 }

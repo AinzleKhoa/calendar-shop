@@ -8,6 +8,7 @@ import '../providers/admin_discount_provider.dart';
 import '../../../product/presentation/providers/product_provider.dart';
 import '../../../category/presentation/providers/category_provider.dart';
 
+// Lớp AdminDiscountFormPage giữ trách nhiệm chính của file này.
 class AdminDiscountFormPage extends ConsumerStatefulWidget {
   final AdminDiscount? discount;
 
@@ -17,6 +18,7 @@ class AdminDiscountFormPage extends ConsumerStatefulWidget {
   ConsumerState<AdminDiscountFormPage> createState() => _AdminDiscountFormPageState();
 }
 
+// Lớp _AdminDiscountFormPageState giữ trách nhiệm chính của file này.
 class _AdminDiscountFormPageState extends ConsumerState<AdminDiscountFormPage> {
   final _formKey = GlobalKey<FormState>();
 
@@ -32,8 +34,10 @@ class _AdminDiscountFormPageState extends ConsumerState<AdminDiscountFormPage> {
   DateTime _startDate = DateTime.now();
   DateTime _endDate = DateTime.now().add(const Duration(days: 7));
 
+  // Khởi tạo controller và state cục bộ của màn hình.
   @override
   void initState() {
+    // Khởi tạo controller và state cục bộ của màn hình.
     super.initState();
     _nameController = TextEditingController(text: widget.discount?.name ?? '');
     _discountValueController = TextEditingController(
@@ -48,10 +52,14 @@ class _AdminDiscountFormPageState extends ConsumerState<AdminDiscountFormPage> {
     }
   }
 
+  // Giải phóng tài nguyên khi widget bị hủy.
   @override
   void dispose() {
+    // Giải phóng tài nguyên khi widget bị hủy.
     _nameController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     _discountValueController.dispose();
+    // Giải phóng tài nguyên khi widget bị hủy.
     super.dispose();
   }
 
@@ -164,6 +172,7 @@ class _AdminDiscountFormPageState extends ConsumerState<AdminDiscountFormPage> {
     }
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     final isLoading = ref.watch(adminDiscountActionNotifierProvider);
@@ -406,12 +415,14 @@ class _AdminDiscountFormPageState extends ConsumerState<AdminDiscountFormPage> {
   }
 }
 
+// Lớp _MultiSelectItem giữ trách nhiệm chính của file này.
 class _MultiSelectItem {
   final int id;
   final String name;
   _MultiSelectItem(this.id, this.name);
 }
 
+// Lớp _MultiSelectDialog giữ trách nhiệm chính của file này.
 class _MultiSelectDialog extends StatefulWidget {
   final String title;
   final List<_MultiSelectItem> items;
@@ -423,18 +434,22 @@ class _MultiSelectDialog extends StatefulWidget {
   State<_MultiSelectDialog> createState() => _MultiSelectDialogState();
 }
 
+// Lớp _MultiSelectDialogState giữ trách nhiệm chính của file này.
 class _MultiSelectDialogState extends State<_MultiSelectDialog> {
   late List<int> _selected;
   String _searchQuery = '';
   int _currentPage = 1;
   static const int _itemsPerPage = 5; // Có thể điều chỉnh số lượng mỗi trang (ví dụ 5 hoặc 10)
 
+  // Khởi tạo controller và state cục bộ của màn hình.
   @override
   void initState() {
+    // Khởi tạo controller và state cục bộ của màn hình.
     super.initState();
     _selected = List.from(widget.initialSelected);
   }
 
+  // Dựng UI dựa trên state hiện tại.
   @override
   Widget build(BuildContext context) {
     // Lọc theo từ khóa
